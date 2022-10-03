@@ -61,8 +61,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="CODE-", group="Linear Opmode")
-@Disabled
+@TeleOp(name="CODE-Kyra", group="Linear Opmode")
+//@Disabled
 public class TELEOPslay extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
@@ -77,10 +77,10 @@ public class TELEOPslay extends LinearOpMode {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        flDrive = hardwareMap.get(DcMotor.class, "left_front_drive");
-        blDrive = hardwareMap.get(DcMotor.class, "left_back_drive");
-        frDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
-        brDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
+        flDrive = hardwareMap.get(DcMotor.class, "frontLeft");
+        blDrive = hardwareMap.get(DcMotor.class, "backLeft");
+        frDrive = hardwareMap.get(DcMotor.class, "frontRight");
+        brDrive = hardwareMap.get(DcMotor.class, "backRight");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -94,7 +94,7 @@ public class TELEOPslay extends LinearOpMode {
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         flDrive.setDirection(DcMotor.Direction.REVERSE);
         blDrive.setDirection(DcMotor.Direction.REVERSE);
-        frDrive.setDirection(DcMotor.Direction.FORWARD);
+        frDrive.setDirection(DcMotor.Direction.REVERSE);
         brDrive.setDirection(DcMotor.Direction.FORWARD);
 
         // Wait for the game to start (driver presses PLAY)
@@ -126,12 +126,10 @@ public class TELEOPslay extends LinearOpMode {
             max = Math.max(max, Math.abs(blPower));
             max = Math.max(max, Math.abs(brPower));
 
-            if (max > 1.0) {
-                flPower  /= max;
-                frPower /= max;
-                blPower   /= max;
-                brPower  /= max;
-            }
+            flPower  /= max;
+            frPower /= max;
+            blPower   /= max;
+            brPower  /= max;
 
             // This is test code:
             //
@@ -143,12 +141,12 @@ public class TELEOPslay extends LinearOpMode {
             //      the setDirection() calls above.
             // Once the correct motors move in the correct direction re-comment this code.
 
-            /*
-            leftFrontPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad
-            leftBackPower   = gamepad1.a ? 1.0 : 0.0;  // A gamepad
-            rightFrontPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
-            rightBackPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
-            */
+
+//            flPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad
+//            blPower   = gamepad1.a ? 1.0 : 0.0;  // A gamepad
+//            frPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
+//            brPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
+
 
             // Send calculated power to wheels
             flDrive.setPower(flPower);
