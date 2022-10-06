@@ -54,7 +54,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  *
  */
 
-@TeleOp(name="Reborn Teleop", group="reborn") // i will come soon. when the 3d print is done, make sure u watch ur back
+@TeleOp(name="ppTeleop", group="pp") // i will come soon. when the 3d print is done, make sure u watch ur back
 //@Disabled
 public class ppTeleOp extends OpMode {
 
@@ -125,13 +125,13 @@ public class ppTeleOp extends OpMode {
             final double v4 = r * Math.cos(robotAngle) - rightX;
 
 
-            if (gamepad1.left_bumper || gamepad2.left_bumper) {//if the left bumper is pressed, it multiplies the total power by the precision driving modifer
-                precisionActive = reductionModifier;
-            } else if (gamepad1.right_bumper || gamepad2.right_bumper) {
-                precisionActive = turboModifier;//right bumper = turbo mode (for crossing the barriers)
-            } else {
-                precisionActive = 1f; //no modifier
-            }
+//            if (gamepad1.left_bumper || gamepad2.left_bumper) {//if the left bumper is pressed, it multiplies the total power by the precision driving modifer
+//                precisionActive = reductionModifier;
+//            } else if (gamepad1.right_bumper || gamepad2.right_bumper) {
+//                precisionActive = turboModifier;//right bumper = turbo mode (for crossing the barriers)
+//            } else {
+//                precisionActive = 1f; //no modifier
+//            }
 
 
             robot.frontLeft.setPower(-speedModifier * v1 * precisionActive);
