@@ -34,6 +34,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+
 /**
  * This file works in conjunction with the External Hardware Class sample called: ConceptExternalHardwareClass.java
  * Please read the explanations in that Sample about how to use this class definition.
@@ -63,6 +65,7 @@ public class RobotHardware {
     private DcMotor blDrive = null;
     private DcMotor frDrive = null;
     private DcMotor brDrive = null;
+    private WebcamName camera = null;
 //    private DcMotor armMotor = null;
 //    private Servo   leftHand = null;
 //    private Servo   rightHand = null;
@@ -90,6 +93,7 @@ public class RobotHardware {
         blDrive = myOpMode.hardwareMap.get(DcMotor.class, "backLeft");
         frDrive = myOpMode.hardwareMap.get(DcMotor.class, "frontRight");
         brDrive = myOpMode.hardwareMap.get(DcMotor.class, "backRight");
+        camera = myOpMode.hardwareMap.get(WebcamName.class, "Webcam 1");
 //        armMotor   = myOpMode.hardwareMap.get(DcMotor.class, "arm");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
