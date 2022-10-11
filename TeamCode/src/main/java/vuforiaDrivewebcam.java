@@ -38,7 +38,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  */
 
 @TeleOp(name="WebcamAUton - KYRA", group = "Concept")
-//@Disabled
+@Disabled
 public class vuforiaDrivewebcam extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.

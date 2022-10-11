@@ -62,7 +62,7 @@ public class SensorMRColor extends ppDriving {
   public void runOpMode() {
 
     // hsvValues is an array that will hold the hue, saturation, and value information.
-    float hsvValues[] = {0F,0F,0F};
+    float hsvValues[] = {0F, 0F, 0F};
 
     // values is a reference to the hsvValues array.
     final float values[] = hsvValues;
@@ -96,7 +96,7 @@ public class SensorMRColor extends ppDriving {
       bCurrState = gamepad1.x;
 
       // check for button state transitions.
-      if (bCurrState && (bCurrState != bPrevState))  {
+      if (bCurrState && (bCurrState != bPrevState)) {
 
         // button is transitioning to a pressed state. So Toggle LED
         bLedOn = !bLedOn;
@@ -118,18 +118,18 @@ public class SensorMRColor extends ppDriving {
       telemetry.addData("Hue", hsvValues[0]);
 
 
-      if(colorSensor.red() > 30 && colorSensor.green() < 0.2 * colorSensor.red() && colorSensor.blue() < 0.2 * colorSensor.red()) {
-        telemetry.addData("RED FOUND: amount is",colorSensor.red());
+      if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()) {
+        telemetry.addData("RED FOUND: amount is", colorSensor.red());
+      } else if (colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()) {
+        telemetry.addData("BlUE FOUND: amount is", colorSensor.blue());
+        //move(0.5, 'f', 3);
+      } else if (colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
+        telemetry.addData("GREEN FOUND: amount is", colorSensor.green());
       }
-      else if(colorSensor.blue() > 30 && colorSensor.green() < 0.2 * colorSensor.blue() && colorSensor.red() < 0.2 * colorSensor.blue()) {
-        telemetry.addData("BlUE FOUND: amount is",colorSensor.blue());
-          //move(0.5, 'f', 3);
-        }
-      else {
-          telemetry.addData("GREEN FOUND: amount is",colorSensor.green());
-        }
+      else{
+        telemetry.addData("no color found:(", colorSensor.alpha());
+      }
 
-      }
 
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument
@@ -142,9 +142,10 @@ public class SensorMRColor extends ppDriving {
 
       telemetry.update();
 
-    // Set the panel back to the default color
+      // Set the panel back to the default color
 //    relativeLayout.post(new Runnable() {
 //      public void run() {
 //        relativeLayout.setBackgroundColor(Color.WHITE);
     }
   }
+}
