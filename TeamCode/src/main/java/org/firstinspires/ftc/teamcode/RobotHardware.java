@@ -32,8 +32,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
@@ -62,10 +60,10 @@ public class RobotHardware {
     private LinearOpMode myOpMode = null;   // gain access to methods in the calling OpMode.
 
     // Define Motor and Servo objects  (Make them private so they can't be accessed externally)
-    private DcMotor flDrive = null;
-    private DcMotor blDrive = null;
-    private DcMotor frDrive = null;
-    private DcMotor brDrive = null;
+    private DcMotor frontLeft = null;
+    private DcMotor backLeft = null;
+    private DcMotor frontRight = null;
+    private DcMotor backRight = null;
     private WebcamName camera = null;
     private ColorSensor colorSensor = null;
 //    private DcMotor armMotor = null;
@@ -91,10 +89,10 @@ public class RobotHardware {
      */
     public void init()    {
         // Define and Initialize Motors (note: need to use reference to actual OpMode).
-        flDrive = myOpMode.hardwareMap.get(DcMotor.class, "frontLeft");
-        blDrive = myOpMode.hardwareMap.get(DcMotor.class, "backLeft");
-        frDrive = myOpMode.hardwareMap.get(DcMotor.class, "frontRight");
-        brDrive = myOpMode.hardwareMap.get(DcMotor.class, "backRight");
+        frontLeft = myOpMode.hardwareMap.get(DcMotor.class, "frontLeft");
+        backLeft = myOpMode.hardwareMap.get(DcMotor.class, "backLeft");
+        frontRight = myOpMode.hardwareMap.get(DcMotor.class, "frontRight");
+        backRight = myOpMode.hardwareMap.get(DcMotor.class, "backRight");
         camera = myOpMode.hardwareMap.get(WebcamName.class, "Webcam 1");
         colorSensor = myOpMode.hardwareMap.get(ColorSensor.class, "sensor_color");
 //        armMotor   = myOpMode.hardwareMap.get(DcMotor.class, "arm");
@@ -102,10 +100,10 @@ public class RobotHardware {
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
-        flDrive.setDirection(DcMotor.Direction.REVERSE);
-        blDrive.setDirection(DcMotor.Direction.REVERSE);
-        frDrive.setDirection(DcMotor.Direction.FORWARD);
-        brDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.FORWARD);
+        backRight.setDirection(DcMotor.Direction.FORWARD);
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
         // leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
