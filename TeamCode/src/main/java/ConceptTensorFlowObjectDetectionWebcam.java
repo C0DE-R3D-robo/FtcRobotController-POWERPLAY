@@ -61,7 +61,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * Here we assume it's an Asset.    Also see method initTfod() below .
      */
 //    private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
-    private static final String TFOD_MODEL_FILE  = "TeamCode/src/main/java/powerslay-tflite/model_unquant.tflite";
+    private static final String TFOD_MODEL_FILE  = "model_unquant.tflite";
 
     private static final String[] LABELS = {
             "0 Circle",
