@@ -61,7 +61,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * Here we assume it's an Asset.    Also see method initTfod() below .
      */
 //    private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
-    private static final String TFOD_MODEL_FILE  = "model_unquant.tflite";
+    private static final String TFOD_MODEL_FILE  = "";
 
     private static final String[] LABELS = {
             "0 Circle",
@@ -82,8 +82,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            "AQTajf7/////AAABmXge0e3MwUEmrTFFgijCW/AluOrxLnNkNM8NglspTfF0SnF8Xa7IhqEEiCxq4+twegQP9Ct6YvUMVEg36Gfm6DVeRCKLMpo2X4nXo4UGKQ9ofgR0SaHtHI4GhCSHfFqD3UIwyOAAG0rotogkAXtWsMUTjSkOtKA7zp+2icGRe0qWsovRfQ1hnMzgUHjQpLJc4lEWDBHk1TioBIPx1F7m+Ah+Z4TIA4hN7Tg/Ny715YzBcs2Uqu22t3/jUxCGFd0qnqmUSpncXBlCNnQFNBXUcxXm1USgcsCUxJT21CvaJ4S1samsNEe+Kgk/6np7Gx3hK6Yoco0EBiEpKykEWt78YSzxN/zC2h9JMtkXNPg3g/sF";
-
+            "AYzztR7/////AAABmbt4ETCVhUkXlQ8HdZtLwIN4GK47R9Jz7vj5m8kZfSO/3JvMfSkVsnzaRTsxUTrKPyz76bKxp3DKVGhAi/VIitAK7Ydw1XbBJRLToi00e1b/XOEgslzqasby5I+rrmOZt8lViiFYGXZ5qmZeYvWjJMHU/08cnk0r5z2ASG2kr3tzBiY2HUlmdAznSkhV69AT+9lQVF4oFUPBWW52+SoYTLgUIAvi3eOUtgmhzgnYr60X187pXXfz7WNY+xoSluhCCcS3N58tkwAxa0VA/alFGpAgUSCdWGWzJ1/rVfzMom324QhJfFbe5R4SlUsn2xnnFo5ahA28A4jD2eJa1G/kJRla9HQO87eILOXrQmmiT79J";
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
@@ -126,28 +125,33 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
 
         if (opModeIsActive()) {
             while (opModeIsActive()) {
-                if (tfod != null) {
-                    // getUpdatedRecognitions() will return null if no new information is available since
-                    // the last time that call was made.
-                    List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-                    if (updatedRecognitions != null) {
-                        telemetry.addData("# Objects Detected", updatedRecognitions.size());
+                try {
+                    if (tfod != null) {
+                        // getUpdatedRecognitions() will return null if no new information is available since
+                        // the last time that call was made.
+                        List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                        if (updatedRecognitions != null) {
+                            telemetry.addData("# Objects Detected", updatedRecognitions.size());
 
-                        // step through the list of recognitions and display image position/size information for each one
-                        // Note: "Image number" refers to the randomized image orientation/number
-                        for (Recognition recognition : updatedRecognitions) {
-                            double col = (recognition.getLeft() + recognition.getRight()) / 2 ;
-                            double row = (recognition.getTop()  + recognition.getBottom()) / 2 ;
-                            double width  = Math.abs(recognition.getRight() - recognition.getLeft()) ;
-                            double height = Math.abs(recognition.getTop()  - recognition.getBottom()) ;
+                            // step through the list of recognitions and display image position/size information for each one
+                            // Note: "Image number" refers to the randomized image orientation/number
+                            for (Recognition recognition : updatedRecognitions) {
+                                double col = (recognition.getLeft() + recognition.getRight()) / 2;
+                                double row = (recognition.getTop() + recognition.getBottom()) / 2;
+                                double width = Math.abs(recognition.getRight() - recognition.getLeft());
+                                double height = Math.abs(recognition.getTop() - recognition.getBottom());
 
-                            telemetry.addData(""," ");
-                            telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100 );
-                            telemetry.addData("- Position (Row/Col)","%.0f / %.0f", row, col);
-                            telemetry.addData("- Size (Width/Height)","%.0f / %.0f", width, height);
+                                telemetry.addData("", " ");
+                                telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
+                                telemetry.addData("- Position (Row/Col)", "%.0f / %.0f", row, col);
+                                telemetry.addData("- Size (Width/Height)", "%.0f / %.0f", width, height);
+                            }
+                            telemetry.update();
                         }
-                        telemetry.update();
                     }
+                } catch (Exception e) {
+                    telemetry.addData("Caught exception", e.getMessage());
+                    telemetry.update();
                 }
             }
         }
