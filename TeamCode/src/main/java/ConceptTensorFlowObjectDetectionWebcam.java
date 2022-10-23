@@ -49,8 +49,8 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-@Disabled
+@TeleOp(name = "KC: TensorFlow Object Detection Webcam", group = "Concept")
+//@Disabled
 public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
 
     /*
@@ -64,9 +64,9 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
     private static final String TFOD_MODEL_FILE  = "TeamCode/src/main/java/powerslay-tflite/model_unquant.tflite";
 
     private static final String[] LABELS = {
-            "1 Circle",
-            "2 Square",
-            "3 Triangle"
+            "0 Circle",
+            "1 Square",
+            "2 Triangle"
     };
 
     /*
