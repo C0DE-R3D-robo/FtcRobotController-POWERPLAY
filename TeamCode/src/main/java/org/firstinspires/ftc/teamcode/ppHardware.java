@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -36,6 +37,8 @@ public class ppHardware {
         frontRight = hwMap.get(DcMotor.class, "frontRight");
         backLeft   = hwMap.get(DcMotor.class, "backLeft");
         backRight  = hwMap.get(DcMotor.class, "backRight");
+
+        //ColorSensor colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
 
