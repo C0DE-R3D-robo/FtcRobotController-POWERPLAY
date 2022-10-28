@@ -129,6 +129,7 @@ public class SensorMRColor extends ppDriving {
 //      if (colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
 //        telemetry.addData("GREEN FOUND: amount is", colorSensor.green());
 //      }
+      //creating formula between red, green, and blue (which is what color sensor reads) and makign a range for the color
 
       if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
         telemetry.addData("PURPLE FOUND",colorSensor.alpha());
