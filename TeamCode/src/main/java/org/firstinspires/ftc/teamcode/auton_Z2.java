@@ -114,8 +114,11 @@ public class auton_Z2 extends ppDriving {
 //        rotate(.5, 'l', 100);
 //        rotate(.5, 'r', 100);
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
-        move(.6,'f',8);
 
+        rotate(.6,'r',35);
+        move(.6,'f',17);
+        rotate(.6,'r',35);
+        move(.6,'f',5);
         //color sensor code in auton example code
 //        move(.6,'b',8);
 //        sleep(100);
