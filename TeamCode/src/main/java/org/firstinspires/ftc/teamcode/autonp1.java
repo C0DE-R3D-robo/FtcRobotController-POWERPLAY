@@ -111,37 +111,37 @@ public class autonp1 extends ppDriving {
 
         waitForStart();
 
-        move(.6, 'f', 5);
-        //STRAFE LEFT TO CAROUSEL, FACING TEAM WALL.
-        //move(0.3, 'f', 17);
-        //sleep(150);
-        move(.6, 'b', 5);
-
-
-        move(.6, 'l', 10);
-        move(.6, 'r', 10);
-
-        //move right
-        rotate(.5, 'l', 100);
-        rotate(.5, 'r', 100);
+//        move(.6, 'f', 5);
+//        //STRAFE LEFT TO CAROUSEL, FACING TEAM WALL.
+//        //move(0.3, 'f', 17);
+//        //sleep(150);
+//        move(.6, 'b', 5);
+//
+//
+//        move(.6, 'l', 10);
+//        move(.6, 'r', 10);
+//
+//        //move right
+//        rotate(.5, 'l', 100);
+//        rotate(.5, 'r', 100);
 
         //color sensor code in auton example code
         if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
             telemetry.addData("PURPLE FOUND",colorSensor.alpha());
-            //move(.6,'f',5)
+            move(.6,'f',5);
         }
         else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
             telemetry.addData("BLACK FOUND",colorSensor.alpha());
-            //move(.6,'b',5)
+            move(.6,'b',5);
         }
 //
         else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
             telemetry.addData("ORANGE FOUND",colorSensor.alpha());
-            //move(.6,'l',5)
+            move(.6,'l',5);
         }
         else{
             telemetry.addData("no color found:(", colorSensor.alpha());
-            //move(.6,'r',5)
+            move(.6,'r',5);
         }
 
     }

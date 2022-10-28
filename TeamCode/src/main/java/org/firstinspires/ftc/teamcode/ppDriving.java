@@ -164,7 +164,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //to go forward
 
                 //set target position
-                robot.frontLeft.setTargetPosition((int)ticks);
+                robot.frontLeft.setTargetPosition((int)(ticks));
                 robot.backLeft.setTargetPosition((int)(ticks));
                 robot.frontRight.setTargetPosition((int)(ticks));
                 robot.backRight.setTargetPosition((int)(ticks));
@@ -197,10 +197,10 @@ public abstract class ppDriving extends LinearOpMode {
 
 
                 //set target position
-                robot.frontLeft.setTargetPosition((int) -ticks);
-                robot.backLeft.setTargetPosition((int) -ticks);
-                robot.frontRight.setTargetPosition((int) -ticks);
-                robot.backRight.setTargetPosition((int) -ticks);
+                robot.frontLeft.setTargetPosition((int) (-ticks));
+                robot.backLeft.setTargetPosition((int) (-ticks));
+                robot.frontRight.setTargetPosition((int) (-ticks));
+                robot.backRight.setTargetPosition((int) (-ticks));
                 //set run to position
                 robot.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -236,10 +236,10 @@ public abstract class ppDriving extends LinearOpMode {
 
 
                 //set target position
-                robot.frontLeft.setTargetPosition((int) ticks);
-                robot.backLeft.setTargetPosition((int)-ticks);
-                robot.frontRight.setTargetPosition((int)-ticks);
-                robot.backRight.setTargetPosition((int) ticks);
+                robot.frontLeft.setTargetPosition((int) (ticks));
+                robot.backLeft.setTargetPosition((int)(-ticks));
+                robot.frontRight.setTargetPosition((int)(-ticks));
+                robot.backRight.setTargetPosition((int) (ticks));
                 //set run to position
                 robot.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -267,10 +267,10 @@ public abstract class ppDriving extends LinearOpMode {
                 // to strafe left
 
                 //set target position
-                robot.frontLeft.setTargetPosition((int)-ticks);
-                robot.backLeft.setTargetPosition((int)ticks);
-                robot.frontRight.setTargetPosition((int)ticks);
-                robot.backRight.setTargetPosition((int)-ticks);
+                robot.frontLeft.setTargetPosition((int)(-ticks));
+                robot.backLeft.setTargetPosition((int)(ticks));
+                robot.frontRight.setTargetPosition((int)(ticks));
+                robot.backRight.setTargetPosition((int)(-ticks));
                 //set run to position
                 robot.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
