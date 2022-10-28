@@ -30,20 +30,9 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-import org.firstinspires.ftc.teamcode.ppHardware;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -73,10 +62,10 @@ import org.firstinspires.ftc.teamcode.ppHardware;
  */
 
 //@Disabled
-@Autonomous(name="auton testing")
+@Autonomous(name="Red/Blue RIGHT Zone 1")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
-public class auton_redL extends ppDriving {
+public class auton_R1 extends ppDriving {
     public int x;
     public int y;
 
@@ -124,27 +113,37 @@ public class auton_redL extends ppDriving {
 //        //move right
 //        rotate(.5, 'l', 100);
 //        rotate(.5, 'r', 100);
+        //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
+        move(.6,'f',8);
+        move(.6,'r',6);
 
         //color sensor code in auton example code
-        if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
-            telemetry.addData("PURPLE FOUND",colorSensor.alpha());
-            move(.6,'b',5);
-        }
-        else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
-            telemetry.addData("BLACK FOUND",colorSensor.alpha());
-            move(.6,'b',5);
-            move(.6,'r',5);
-        }
-//
-        else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
-            telemetry.addData("ORANGE FOUND",colorSensor.alpha());
-            move(.6,'b',5);
-            move(.6,'l',5);
-        }
-        else{
-            telemetry.addData("no color found:(", colorSensor.alpha());
-            rotate(.6,'r',5);
-        }
+//        move(.6,'b',8);
+//        sleep(100);
+//        if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
+//            telemetry.addData("PURPLE FOUND",colorSensor.alpha());
+//            telemetry.update();
+//            move(.6,'b',5);
+//        }
+//        else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
+//            telemetry.addData("BLACK FOUND",colorSensor.alpha());
+//            telemetry.update();
+//            move(.6,'b',5);
+//            move(.6,'r',5);
+//        }
+////
+//        else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
+//            telemetry.addData("ORANGE FOUND",colorSensor.alpha());
+//            telemetry.update();
+//            move(.6,'b',5);
+//            move(.6,'l',5);
+//        }
+//        else{
+//            telemetry.addData("no color found:(", colorSensor.alpha());
+//            telemetry.update();
+//            rotate(.6,'r',5);
+//        }
+//        telemetry.update();
 
     }
 }
