@@ -76,7 +76,7 @@ import org.firstinspires.ftc.teamcode.ppHardware;
 @Autonomous(name="auton testing")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
-public class autonp1 extends ppDriving {
+public class auton_redL extends ppDriving {
     public int x;
     public int y;
 
@@ -128,20 +128,22 @@ public class autonp1 extends ppDriving {
         //color sensor code in auton example code
         if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
             telemetry.addData("PURPLE FOUND",colorSensor.alpha());
-            move(.6,'f',5);
+            move(.6,'b',5);
         }
         else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
             telemetry.addData("BLACK FOUND",colorSensor.alpha());
             move(.6,'b',5);
+            move(.6,'r',5);
         }
 //
         else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
             telemetry.addData("ORANGE FOUND",colorSensor.alpha());
+            move(.6,'b',5);
             move(.6,'l',5);
         }
         else{
             telemetry.addData("no color found:(", colorSensor.alpha());
-            move(.6,'r',5);
+            rotate(.6,'r',5);
         }
 
     }

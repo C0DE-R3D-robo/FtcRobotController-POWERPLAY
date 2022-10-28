@@ -44,11 +44,11 @@ public class ppHardware {
 
         colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
 
-        liftLeft = hwMap.get(DcMotor.class,"liftLeft");
-        liftRight = hwMap.get(DcMotor.class,"liftRight");
-
-        wheelLeft = hwMap.get(Servo.class,"wheelLeft");
-        wheelRight = hwMap.get(Servo.class,"wheelRight");
+//        liftLeft = hwMap.get(DcMotor.class,"liftLeft");
+//        liftRight = hwMap.get(DcMotor.class,"liftRight");
+//
+//        wheelLeft = hwMap.get(Servo.class,"wheelLeft");
+//        wheelRight = hwMap.get(Servo.class,"wheelRight");
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
 
@@ -105,8 +105,8 @@ public class ppHardware {
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        liftLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        liftRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        liftLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        liftRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //
 ////        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);//doesnt have an encoder as of 1/13, but will eventually
 //        duckSpinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

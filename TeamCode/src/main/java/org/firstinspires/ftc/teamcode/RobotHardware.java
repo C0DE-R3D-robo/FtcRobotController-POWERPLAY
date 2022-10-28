@@ -94,7 +94,7 @@ public class RobotHardware {
         frontRight = myOpMode.hardwareMap.get(DcMotor.class, "frontRight");
         backRight = myOpMode.hardwareMap.get(DcMotor.class, "backRight");
         camera = myOpMode.hardwareMap.get(WebcamName.class, "Webcam 1");
-        colorSensor = myOpMode.hardwareMap.get(ColorSensor.class, "sensor_color");
+        colorSensor = myOpMode.hardwareMap.get(ColorSensor.class, "colorSensor");
 //        armMotor   = myOpMode.hardwareMap.get(DcMotor.class, "arm");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
