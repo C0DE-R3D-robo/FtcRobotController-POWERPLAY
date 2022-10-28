@@ -115,7 +115,7 @@ public class auton_L3 extends ppDriving {
 //        rotate(.5, 'r', 100);
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
         move(.6,'f',28);
-        rotate(.6,'r',45);
+        rotate(.6,'r',45);//these rotates are for correctional purposes
         move(.6,'r',10);
         rotate(.6,'l',25);
         move(.6,'f',3);

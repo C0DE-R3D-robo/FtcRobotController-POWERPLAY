@@ -115,7 +115,7 @@ public class auton_Z2 extends ppDriving {
 //        rotate(.5, 'r', 100);
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
 
-        rotate(.6,'r',35);
+        rotate(.6,'r',35);//these rotates are for correctional purposes
         move(.6,'f',17);
         rotate(.6,'r',35);
         move(.6,'f',5);
