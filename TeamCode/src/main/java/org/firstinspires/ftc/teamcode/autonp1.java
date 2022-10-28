@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -94,6 +95,7 @@ public class autonp1 extends ppDriving {
     private DcMotor frontRight   = null;
     private DcMotor backLeft   = null;
     private DcMotor backRight   = null;
+    private ColorSensor colorSensor = null;
 
 
     @Override
@@ -104,6 +106,7 @@ public class autonp1 extends ppDriving {
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
         backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
         backRight  = hardwareMap.get(DcMotor.class, "backRight");
+        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
 
 
         waitForStart();
@@ -122,7 +125,24 @@ public class autonp1 extends ppDriving {
         rotate(.5, 'l', 100);
         rotate(.5, 'r', 100);
 
-        //continue until the image is seen
+        //color sensor code in auton example code
+        if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
+            telemetry.addData("PURPLE FOUND",colorSensor.alpha());
+            //move(.6,'f',5)
+        }
+        else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
+            telemetry.addData("BLACK FOUND",colorSensor.alpha());
+            //move(.6,'b',5)
+        }
+//
+        else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
+            telemetry.addData("ORANGE FOUND",colorSensor.alpha());
+            //move(.6,'l',5)
+        }
+        else{
+            telemetry.addData("no color found:(", colorSensor.alpha());
+            //move(.6,'r',5)
+        }
 
     }
 }

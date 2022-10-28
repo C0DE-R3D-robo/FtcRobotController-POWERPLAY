@@ -31,6 +31,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -71,6 +73,10 @@ public class TELEOPslay extends LinearOpMode {
     private DcMotor blDrive = null;
     private DcMotor frDrive = null;
     private DcMotor brDrive = null;
+    public DcMotor liftLeft = null;
+    public DcMotor liftRight = null;
+    public Servo wheelRight = null;
+    public Servo wheelLeft = null;
 
     @Override
     public void runOpMode() {
@@ -81,6 +87,10 @@ public class TELEOPslay extends LinearOpMode {
         blDrive = hardwareMap.get(DcMotor.class, "backLeft");
         frDrive = hardwareMap.get(DcMotor.class, "frontRight");
         brDrive = hardwareMap.get(DcMotor.class, "backRight");
+        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
+        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
+        wheelLeft = hardwareMap.get(Servo.class,"wheelLeft");
+        wheelRight = hardwareMap.get(Servo.class,"wheelRight");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -96,6 +106,8 @@ public class TELEOPslay extends LinearOpMode {
         blDrive.setDirection(DcMotor.Direction.REVERSE);
         frDrive.setDirection(DcMotor.Direction.REVERSE);
         brDrive.setDirection(DcMotor.Direction.FORWARD);
+        liftLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        liftRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
@@ -159,5 +171,22 @@ public class TELEOPslay extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", flPower, frPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", blPower, brPower);
             telemetry.update();
+
+            if (gamepad1.dpad_up || gamepad2.dpad_up){
+                liftLeft.setPower(.5);
+                liftRight.setPower(.5);
+            }
+            if (gamepad1.dpad_down || gamepad2.dpad_down){
+                liftLeft.setPower(-.5);
+                liftRight.setPower(-.5);
+            }
+            if (gamepad1.dpad_left || gamepad2.dpad_left){
+                wheelLeft.setPosition(1);
+                wheelRight.setPosition(-1);
+            }
+            if (gamepad1.dpad_right || gamepad2.dpad_right){
+                wheelLeft.setPosition(-1);
+                wheelRight.setPosition(1);
+            }
         }
     }}
