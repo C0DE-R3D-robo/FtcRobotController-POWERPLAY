@@ -1,18 +1,23 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 // Hardware class for the Greenhill 3 testbot
 // This hardware is for INFERNO REBORN, the robot we were working on as of January 8, 2022.
 public class ppHardware {
     /* Public OpMode members. */
-    public DcMotor  frontLeft   = null, frontRight  = null, backLeft   = null, backRight  = null, rotateLeft = null, rotateRight = null, duckSpinner = null;
+    public DcMotor  frontLeft   = null;
+    public DcMotor frontRight  = null;
+    public DcMotor backLeft   = null;
+    public DcMotor backRight  = null;
+    public ColorSensor colorSensor = null;
+    public DcMotor liftRight = null;
+    public DcMotor liftLeft = null;
+    public Servo wheelRight = null;
+    public Servo wheelLeft = null;
     //public DcMotor  pulleyMotor0 = null, pulleyMotor1=null, carousel = null;
     //public CRServo extenderServo = null;
 //    public Servo clawServo = null, chuteServo = null;
@@ -36,6 +41,14 @@ public class ppHardware {
         frontRight = hwMap.get(DcMotor.class, "frontRight");
         backLeft   = hwMap.get(DcMotor.class, "backLeft");
         backRight  = hwMap.get(DcMotor.class, "backRight");
+
+        colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
+
+        liftLeft = hwMap.get(DcMotor.class,"liftLeft");
+        liftRight = hwMap.get(DcMotor.class,"liftRight");
+
+        wheelLeft = hwMap.get(Servo.class,"wheelLeft");
+        wheelRight = hwMap.get(Servo.class,"wheelRight");
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
 
@@ -92,8 +105,8 @@ public class ppHardware {
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        rotateLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        rotateRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //
 ////        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);//doesnt have an encoder as of 1/13, but will eventually
 //        duckSpinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

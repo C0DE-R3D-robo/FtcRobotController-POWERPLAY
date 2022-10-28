@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
+import java.lang.Math;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -118,16 +119,31 @@ public class SensorMRColor extends ppDriving {
       telemetry.addData("Hue", hsvValues[0]);
 
 
-      if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()) {
-        telemetry.addData("RED FOUND: amount is", colorSensor.red());
-      } else if (colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()) {
-        telemetry.addData("BlUE FOUND: amount is", colorSensor.blue());
-        //move(0.5, 'f', 3);
-      } else if (colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
-        telemetry.addData("GREEN FOUND: amount is", colorSensor.green());
+//      if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()) {
+//        telemetry.addData("RED FOUND: amount is", colorSensor.red());
+//      }
+//      if (colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()) {
+//        telemetry.addData("BlUE FOUND: amount is", colorSensor.blue());
+//        //move(0.5, 'f', 3);
+//      }
+//      if (colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
+//        telemetry.addData("GREEN FOUND: amount is", colorSensor.green());
+//      }
+
+      if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
+        telemetry.addData("PURPLE FOUND",colorSensor.alpha());
+      }
+      else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
+        telemetry.addData("BLACK FOUND",colorSensor.alpha());
+      }
+//      else if (Math.abs(colorSensor.green() - colorSensor.blue() < 10) || {
+//
+//      }
+      else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
+        telemetry.addData("ORANGE FOUND",colorSensor.alpha());
       }
       else{
-        telemetry.addData("no color found:(", colorSensor.alpha());
+       telemetry.addData("no color found:(", colorSensor.alpha());
       }
 
 

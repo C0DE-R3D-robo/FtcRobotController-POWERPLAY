@@ -7,6 +7,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -59,6 +60,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class ppTeleOp extends OpMode {
 
     ppHardware robot = new ppHardware();
+    //ColorSensor colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
     // Declare OpMode members.
 
     //methods to control the speed of the robot.
@@ -67,6 +69,7 @@ public class ppTeleOp extends OpMode {
     private float turboModifier = 1.5f;// the amount that the speed will be increased in turbo mode. Must be <2. No increase is 1.
     private float precisionActive = 1f;
     private float turnReduction = .5f;//reduces the speed of turning. <1 to reduce. 1 if to leave as normal> yuh
+
     //private float BRDrive = 1f;
 
     @Override
@@ -152,6 +155,27 @@ public class ppTeleOp extends OpMode {
         }
 
         telemetry.addLine();
+
+        //COLOLR SENSOR CODE
+//        if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
+//            telemetry.addData("PURPLE FOUND",colorSensor.alpha());
+//        } // reen/red * 100 < 100
+//        //if (colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
+//
+//        //(Math.abs(colorSensor.red()/colorSensor.blue() * 200 - colorSensor.green()) < 60)// {
+//        //telemetry.addData("GREEN FOUND",colorSensor.alpha());
+////      if (Math.abs(colorSensor.blue() / colorSensor.red() * 150 - colorSensor.green()) < 40){
+////        telemetry.addData("white FOUND",colorSensor.alpha());
+////      }
+//        else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
+//            telemetry.addData("BLACK FOUND",colorSensor.alpha());
+//        }
+//        else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 25) {
+//            telemetry.addData("ORANGE FOUND",colorSensor.alpha());
+//        }
+//        else{
+//            telemetry.addData("no color found:(", colorSensor.alpha());
+//        }
 //
 //        //======================================
 //        //----------QUACK DELIVERY--------------

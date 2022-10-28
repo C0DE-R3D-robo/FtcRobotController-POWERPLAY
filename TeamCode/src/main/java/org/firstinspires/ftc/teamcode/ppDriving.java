@@ -32,14 +32,17 @@ public abstract class ppDriving extends LinearOpMode {
     final double TURN_GAIN  =   0.01 ;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
 
     final double MM_PER_INCH = 25.40 ;   //  Metric conversion
+    private DcMotor backLeft = null;
+    private DcMotor backRight = null;
+    private DcMotor frontLeft = null;
+    private DcMotor frontRight = null;
+
 
     public void motorStop() {
         robot.frontLeft.setPower(0);
         robot.frontRight.setPower(0);
         robot.backLeft.setPower(0);
         robot.backRight.setPower(0);
-        robot.rotateLeft.setPower(0);
-        robot.rotateRight.setPower(0);
 //        robot.carousel.setPower(0);
         reset();
     }
@@ -48,8 +51,6 @@ public abstract class ppDriving extends LinearOpMode {
         robot.backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rotateRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rotateRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     }
 //
@@ -156,7 +157,7 @@ public abstract class ppDriving extends LinearOpMode {
 //        motorStop();
 //    }
     public void move(double power, char direction, double distance){
-        double ticks = COUNTS_PER_INCH * distance/3;
+        double ticks = COUNTS_PER_INCH * distance;
 //        double ticks = 7.5* distance;
         switch(direction){
             case 'f':
