@@ -29,6 +29,7 @@
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -74,8 +75,8 @@ public class TELEOPslay extends LinearOpMode {
     private DcMotor brDrive = null;
     public DcMotor liftLeft = null;
     public DcMotor liftRight = null;
-    public Servo inRight = null;
-    public Servo inLeft = null;
+    private Servo inRight = null;
+    private Servo inLeft = null;
 
     @Override
     public void runOpMode() {

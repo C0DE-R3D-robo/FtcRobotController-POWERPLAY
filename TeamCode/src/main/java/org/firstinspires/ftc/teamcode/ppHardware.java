@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -16,8 +17,8 @@ public class ppHardware {
     public ColorSensor colorSensor = null;
     public DcMotor liftRight = null;
     public DcMotor liftLeft = null;
-    public Servo wheelRight = null;
-    public Servo wheelLeft = null;
+    public Servo inRight = null;
+    public Servo inLeft = null;
     //public DcMotor  pulleyMotor0 = null, pulleyMotor1=null, carousel = null;
     //public CRServo extenderServo = null;
 //    public Servo clawServo = null, chuteServo = null;
@@ -47,8 +48,8 @@ public class ppHardware {
 //        liftLeft = hwMap.get(DcMotor.class,"liftLeft");
 //        liftRight = hwMap.get(DcMotor.class,"liftRight");
 //
-//        wheelLeft = hwMap.get(Servo.class,"wheelLeft");
-//        wheelRight = hwMap.get(Servo.class,"wheelRight");
+        inLeft = hwMap.get(Servo.class,"inLeft");
+        inRight = hwMap.get(Servo.class,"inRight");
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
 
@@ -67,10 +68,6 @@ public class ppHardware {
 //        backDist = hwMap.get(DistanceSensor.class, "backDist");
 //        clawDist = hwMap.get(DistanceSensor.class, "clawDist");
 //        strafeDist = hwMap.get(DistanceSensor.class, "strafeDist");
-
-
-
-
 
 
         // Set Direction
