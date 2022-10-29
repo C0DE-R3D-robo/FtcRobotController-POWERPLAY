@@ -87,8 +87,8 @@ public class auton_Z2 extends ppDriving {
     private DcMotor backLeft   = null;
     private DcMotor backRight   = null;
     private ColorSensor colorSensor = null;
-    private Servo inRight = null;
-    private Servo inLeft = null;
+//    private Servo inRight = null;
+//    private Servo inLeft = null;
 
 
     @Override
@@ -100,8 +100,8 @@ public class auton_Z2 extends ppDriving {
         backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
         backRight  = hardwareMap.get(DcMotor.class, "backRight");
         colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
-        inLeft = hardwareMap.get(Servo.class,"inLeft");
-        inRight = hardwareMap.get(Servo.class,"inRight");
+//        inLeft = hardwareMap.get(Servo.class,"inLeft");
+//        inRight = hardwareMap.get(Servo.class,"inRight");
 
         waitForStart();
 
@@ -120,12 +120,12 @@ public class auton_Z2 extends ppDriving {
 //        rotate(.5, 'r', 100);
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
 
-//        rotate(.6,'r',35);//these rotates are for correctional purposes
-//        move(.6,'f',17);
-//        rotate(.6,'r',35);
-//        move(.6,'f',5);
-        inLeft.setPosition(.5);
-        inRight.setPosition(-.5);//intake cone
+        rotate(.6,'r',35);//these rotates are for correctional purposes
+        move(.6,'f',17);
+        rotate(.6,'r',35);
+        move(.6,'f',5);
+//        inLeft.setPosition(.5);
+//        inRight.setPosition(-.5);//intake cone
         //color sensor code in auton example code
 //        move(.6,'b',8);
 //        sleep(100);
