@@ -173,20 +173,28 @@ public class TELEOPslay extends LinearOpMode {
             telemetry.update();
 
             //2nd driver controls only the slides and intake machanism
-            if (gamepad2.dpad_up){
+            if (gamepad1.dpad_up){
                 liftLeft.setPower(.5);
                 liftRight.setPower(.5);
+            }else{
+                liftLeft.setPower(0);
+                liftRight.setPower(0);
             }
-            if (gamepad2.dpad_down){
+            if (gamepad1.dpad_down){
                 liftLeft.setPower(-.5);
                 liftRight.setPower(-.5);
+            }else{
+                liftLeft.setPower(0);
+                liftRight.setPower(0);
+
+
             }
-            if (gamepad2.left_bumper){//intake cone
-                inLeft.setPosition(1);
-                inRight.setPosition(-1);
+            if (gamepad1.dpad_left){//intake cone
+                inLeft.setPosition(0.5);
+                inRight.setPosition(0.5);
             }
-            if (gamepad2.right_bumper){//push cone out
-                inLeft.setPosition(-1);
+            else{
+                inLeft.setPosition(0);
                 inRight.setPosition(1);
             }
         }
