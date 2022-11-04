@@ -51,7 +51,7 @@ import java.util.List;
  */
 @TeleOp(name = "KC: TensorFlow Object Detection Webcam", group = "Concept")
 //@Disabled
-public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
+public class Auton_wCam extends LinearOpMode {
 
     /*
      * Specify the source for the Tensor Flow Model.
@@ -64,9 +64,9 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
     private static final String TFOD_MODEL_FILE  = "powerslay2.tflite";
 
     private static final String[] LABELS = {
-            "circle",
-            "square",
-            "triangle"
+            "Circle",
+            "Square",
+            "Triangle"
     };
 
     /*
