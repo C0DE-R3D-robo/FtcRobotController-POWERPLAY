@@ -15,10 +15,10 @@ public class ppHardware {
     public DcMotor backLeft   = null;
     public DcMotor backRight  = null;
     public ColorSensor colorSensor = null;
-    public DcMotor liftRight = null;
-    public DcMotor liftLeft = null;
-    public Servo inRight = null;
-    public Servo inLeft = null;
+    public DcMotor neck = null;
+    public DcMotor elbow = null;
+    public Servo Claw = null;
+    public Servo clawRotate = null;
     //public DcMotor  pulleyMotor0 = null, pulleyMotor1=null, carousel = null;
     //public CRServo extenderServo = null;
 //    public Servo clawServo = null, chuteServo = null;
@@ -42,14 +42,12 @@ public class ppHardware {
         frontRight = hwMap.get(DcMotor.class, "frontRight");
         backLeft   = hwMap.get(DcMotor.class, "backLeft");
         backRight  = hwMap.get(DcMotor.class, "backRight");
-
         colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
+        neck = hwMap.get(DcMotor.class,"neck");
+        elbow = hwMap.get(DcMotor.class,"elbow");
+        Claw = hwMap.get(Servo.class,"Claw");
+        clawRotate = hwMap.get(Servo.class,"clawRotate");
 
-//        liftLeft = hwMap.get(DcMotor.class,"liftLeft");
-//        liftRight = hwMap.get(DcMotor.class,"liftRight");
-//
-        inLeft = hwMap.get(Servo.class,"inLeft");
-        inRight = hwMap.get(Servo.class,"inRight");
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
 
@@ -75,6 +73,8 @@ public class ppHardware {
         frontRight.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         backLeft.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         backRight.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
+        neck.setDirection(DcMotor.Direction.FORWARD);
+        elbow.setDirection(DcMotor.Direction.REVERSE);
 
 //        rotateLeft.setDirection(DcMotor.Direction.FORWARD);
 //        rotateRight.setDirection(DcMotor.Direction.REVERSE);
@@ -86,7 +86,9 @@ public class ppHardware {
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
-        backRight.setPower(0); // u know who wont be back tho? u.
+        backRight.setPower(0);
+        neck.setPower(0);
+        elbow.setPower(0);
 
 //        rotateLeft.setPower(0);
 //        rotateRight.setPower(0);
@@ -102,6 +104,8 @@ public class ppHardware {
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        liftLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        liftRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //
