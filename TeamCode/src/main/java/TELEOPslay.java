@@ -29,9 +29,7 @@
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -73,10 +71,10 @@ public class TELEOPslay extends LinearOpMode {
     private DcMotor blDrive = null;
     private DcMotor frDrive = null;
     private DcMotor brDrive = null;
-    public DcMotor liftLeft = null;
-    public DcMotor liftRight = null;
-    private Servo inRight = null;
-    private Servo inLeft = null;
+    public DcMotor neck = null;//motor that is connected directly to the chassis
+    public DcMotor elbow = null;
+    private Servo Claw = null;
+    private Servo clawRotate = null;
 
     @Override
     public void runOpMode() {
@@ -87,10 +85,10 @@ public class TELEOPslay extends LinearOpMode {
         blDrive = hardwareMap.get(DcMotor.class, "backLeft");
         frDrive = hardwareMap.get(DcMotor.class, "frontRight");
         brDrive = hardwareMap.get(DcMotor.class, "backRight");
-        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
-        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
-        inLeft = hardwareMap.get(Servo.class,"inLeft");
-        inRight = hardwareMap.get(Servo.class,"inRight");
+        neck = hardwareMap.get(DcMotor.class,"neck");
+        elbow = hardwareMap.get(DcMotor.class,"elbow");
+        Claw = hardwareMap.get(Servo.class,"Claw");
+        clawRotate = hardwareMap.get(Servo.class,"clawRotate");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -104,10 +102,10 @@ public class TELEOPslay extends LinearOpMode {
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         flDrive.setDirection(DcMotor.Direction.REVERSE);
         blDrive.setDirection(DcMotor.Direction.REVERSE);
-        frDrive.setDirection(DcMotor.Direction.FORWARD);
+        frDrive.setDirection(DcMotor.Direction.REVERSE);
         brDrive.setDirection(DcMotor.Direction.FORWARD);
-        //liftLeft.setDirection(DcMotor.Direction.FORWARD);
-        //liftRight.setDirection(DcMotor.Direction.REVERSE);
+        neck.setDirection(DcMotor.Direction.FORWARD);
+        elbow.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
@@ -143,7 +141,24 @@ public class TELEOPslay extends LinearOpMode {
             blPower   /= max;
             brPower  /= max;
 
+            // This is test code:
+            //
+            // Uncomment the following code to test your motor directions.
+            // Each button should make the corresponding motor run FORWARD.
+            //   1) First get all the motors to take to correct positions on the robot
+            //      by adjusting your Robot Configuration if necessary.
+            //   2) Then make sure they run in the correct direction by modifying the
+            //      the setDirection() calls above.
+            // Once the correct motors move in the correct direction re-comment this code.
 
+
+//            flPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad
+//            blPower   = gamepad1.a ? 1.0 : 0.0;  // A gamepad
+//            frPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
+//            brPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
+
+
+            // Send calculated power to wheels
             flDrive.setPower(flPower);
             frDrive.setPower(frPower);
             blDrive.setPower(blPower);
@@ -155,31 +170,40 @@ public class TELEOPslay extends LinearOpMode {
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", blPower, brPower);
             telemetry.update();
 
-            //2nd driver controls only the slides and intake machanism
-
-            if (gamepad2.dpad_up){
-                liftLeft.setPower(.75);
-                liftRight.setPower(.75);
+            //2nd driver controls only the arm and claw
+        // CHASSIS-BOUND HINGE CONTROL
+            if (gamepad2.dpad_right){
+                neck.setPower(.5);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
             }else{
-                liftLeft.setPower(0);
-                liftRight.setPower(0);
+                neck.setPower(0);
+            }
+            if(gamepad2.dpad_left){
+                neck.setPower(-.5);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
+            }else{
+                neck.setPower(0);
+            }
+
+        // ELBOW CONTROL
+            if(gamepad2.dpad_up){
+                elbow.setPower(.5);//should extend claw forward ; this is just filler code, we can figure out actual numbers later
+            }else{
+                elbow.setPower(0);
             }
             if (gamepad2.dpad_down){
-                liftLeft.setPower(-.75);
-                liftRight.setPower(-.75);
+                elbow.setPower(-.5);//should retract claw ; this is just filler code, we can figure out actual numbers later
             }else{
-                liftLeft.setPower(0);
-                liftRight.setPower(0);
-
-
+                elbow.setPower(0);
             }
-            if (gamepad2.x){//intake cone
-                inLeft.setPosition(0);
-                inRight.setPosition(1);
+
+        // CLAW CONTROL
+            if (gamepad2.dpad_left){//close on cone ; this is just filler code, we can figure out actual numbers later
+                Claw.setPosition(0.5);
             }
-            else{
-                inLeft.setPosition(1);
-                inRight.setPosition(0);
+            if(gamepad2.dpad_right){//open ; this is just filler code, we can figure out actual numbers later
+                Claw.setPosition(0);
+            }
+            if(gamepad2.a){//rotate claw ~270 degrees; this is just filler code, we can figure out actual numbers later
+                clawRotate.setPosition(1);
             }
         }
     }}
