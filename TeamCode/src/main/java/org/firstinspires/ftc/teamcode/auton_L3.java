@@ -62,7 +62,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 //@Disabled
-@Autonomous(name="Red/Blue LEFT Zone 3")
+@Autonomous(name=" Zone 3")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
 public class auton_L3 extends ppDriving {
@@ -84,6 +84,8 @@ public class auton_L3 extends ppDriving {
     private DcMotor frontRight   = null;
     private DcMotor backLeft   = null;
     private DcMotor backRight   = null;
+    public DcMotor liftLeft = null;
+    public DcMotor liftRight = null;
     private ColorSensor colorSensor = null;
 
 
@@ -95,7 +97,10 @@ public class auton_L3 extends ppDriving {
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
         backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
         backRight  = hardwareMap.get(DcMotor.class, "backRight");
+        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
+        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
         colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+        //colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
 
 
         waitForStart();
@@ -114,14 +119,14 @@ public class auton_L3 extends ppDriving {
 //        rotate(.5, 'l', 100);
 //        rotate(.5, 'r', 100);
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
-        move(.6,'f',28);
-        rotate(.6,'r',45);//these rotates are for correctional purposes
-        move(.6,'r',10);
-        rotate(.6,'l',25);
-        move(.6,'f',3);
-        move(.6,'r',17);
-        rotate(.6,'l',35);
-        move(.6,'r',6);
+        move(.6,'f',25);
+        //rotate(.6,'r',45);//these rotates are for correctional purposes
+        move(.6,'r',15);
+        //rotate(.6,'l',25);
+        //move(.6,'f',3);
+       // move(.6,'r',17);
+        //rotate(.6,'l',35);
+        //move(.6,'r',6);
 
         //color sensor code in auton example code
 //        move(.6,'b',8);
@@ -150,6 +155,13 @@ public class auton_L3 extends ppDriving {
 //            rotate(.6,'r',5);
 //        }
 //        telemetry.update();
+
+        //rotate(.6,'r',35);//these rotates are for correctional purposes
+//        move(.6,'f',25);
+//        rotate(.6,'r',45);
+//        move(.6,'l',10);
+//        rotate(.6,'r',35);
+//        move(.6,'l',8);
 
     }
 }

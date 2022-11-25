@@ -37,6 +37,7 @@ public class ppHardware {
 
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap hwMap) {
+
         // Define and Initialize Devices
         frontLeft  = hwMap.get(DcMotor.class, "frontLeft");
         frontRight = hwMap.get(DcMotor.class, "frontRight");
@@ -45,29 +46,11 @@ public class ppHardware {
 
         colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
 
-//        liftLeft = hwMap.get(DcMotor.class,"liftLeft");
-//        liftRight = hwMap.get(DcMotor.class,"liftRight");
+       liftLeft = hwMap.get(DcMotor.class,"liftLeft");
+        liftRight = hwMap.get(DcMotor.class,"liftRight");
 //
         inLeft = hwMap.get(Servo.class,"inLeft");
         inRight = hwMap.get(Servo.class,"inRight");
-        //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
-        //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
-
-//        liftMotor = hwMap.get(DcMotor.class, "liftMotor");
-        //duckSpinner = hwMap.get(DcMotor.class, "duckSpinner");
-
-
-//        clawServo = hwMap.get(Servo.class, "clawServo");
-//        chuteServo = hwMap.get(Servo.class, "chuteServo");
-////        dropServo = hwMap.get(Servo.class, "dropServo");
-//
-//        magStopBottom = hwMap.touchSensor.get("magStopBottom");
-//        magStopMid = hwMap.touchSensor.get("magStopMid");
-//        magStopTop = hwMap.touchSensor.get("magStopTop");
-//
-//        backDist = hwMap.get(DistanceSensor.class, "backDist");
-//        clawDist = hwMap.get(DistanceSensor.class, "clawDist");
-//        strafeDist = hwMap.get(DistanceSensor.class, "strafeDist");
 
 
         // Set Direction
@@ -88,25 +71,11 @@ public class ppHardware {
         backLeft.setPower(0);
         backRight.setPower(0); // u know who wont be back tho? u.
 
-//        rotateLeft.setPower(0);
-//        rotateRight.setPower(0);
 //
-////        liftMotor.setPower(0);
-//        duckSpinner.setPower(0);
-//        chuteServo.setPosition(.5);
-//        clawServo.setPosition(.15);
-        // RUN TO POSITION
-        // Set all motors to run with encoders if applicable.
-        // May want to use RUN_USING_ENCODERS if encoders are installed.
         frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        liftLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        liftRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//
-////        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);//doesnt have an encoder as of 1/13, but will eventually
-//        duckSpinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 

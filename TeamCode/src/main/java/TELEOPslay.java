@@ -104,10 +104,10 @@ public class TELEOPslay extends LinearOpMode {
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         flDrive.setDirection(DcMotor.Direction.REVERSE);
         blDrive.setDirection(DcMotor.Direction.REVERSE);
-        frDrive.setDirection(DcMotor.Direction.REVERSE);
+        frDrive.setDirection(DcMotor.Direction.FORWARD);
         brDrive.setDirection(DcMotor.Direction.FORWARD);
-        liftLeft.setDirection(DcMotor.Direction.FORWARD);
-        liftRight.setDirection(DcMotor.Direction.REVERSE);
+        //liftLeft.setDirection(DcMotor.Direction.FORWARD);
+        //liftRight.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
@@ -143,24 +143,7 @@ public class TELEOPslay extends LinearOpMode {
             blPower   /= max;
             brPower  /= max;
 
-            // This is test code:
-            //
-            // Uncomment the following code to test your motor directions.
-            // Each button should make the corresponding motor run FORWARD.
-            //   1) First get all the motors to take to correct positions on the robot
-            //      by adjusting your Robot Configuration if necessary.
-            //   2) Then make sure they run in the correct direction by modifying the
-            //      the setDirection() calls above.
-            // Once the correct motors move in the correct direction re-comment this code.
 
-
-//            flPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad
-//            blPower   = gamepad1.a ? 1.0 : 0.0;  // A gamepad
-//            frPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
-//            brPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
-
-
-            // Send calculated power to wheels
             flDrive.setPower(flPower);
             frDrive.setPower(frPower);
             blDrive.setPower(blPower);
@@ -173,29 +156,30 @@ public class TELEOPslay extends LinearOpMode {
             telemetry.update();
 
             //2nd driver controls only the slides and intake machanism
-            if (gamepad1.dpad_up){
-                liftLeft.setPower(.5);
-                liftRight.setPower(.5);
+
+            if (gamepad2.dpad_up){
+                liftLeft.setPower(.75);
+                liftRight.setPower(.75);
             }else{
                 liftLeft.setPower(0);
                 liftRight.setPower(0);
             }
-            if (gamepad1.dpad_down){
-                liftLeft.setPower(-.5);
-                liftRight.setPower(-.5);
+            if (gamepad2.dpad_down){
+                liftLeft.setPower(-.75);
+                liftRight.setPower(-.75);
             }else{
                 liftLeft.setPower(0);
                 liftRight.setPower(0);
 
 
             }
-            if (gamepad1.dpad_left){//intake cone
-                inLeft.setPosition(0.5);
-                inRight.setPosition(0.5);
-            }
-            else{
+            if (gamepad2.x){//intake cone
                 inLeft.setPosition(0);
                 inRight.setPosition(1);
+            }
+            else{
+                inLeft.setPosition(1);
+                inRight.setPosition(0);
             }
         }
     }}

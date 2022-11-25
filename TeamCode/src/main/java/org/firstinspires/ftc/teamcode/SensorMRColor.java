@@ -131,20 +131,23 @@ public class SensorMRColor extends ppDriving {
 //      }
       //creating formula between red, green, and blue (which is what color sensor reads) and makign a range for the color
 
+      boolean colorFound = false;
+
       if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
         telemetry.addData("PURPLE FOUND",colorSensor.alpha());
+        colorFound = true;
       }
       else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
         telemetry.addData("BLACK FOUND",colorSensor.alpha());
+        colorFound = true;
       }
-//      else if (Math.abs(colorSensor.green() - colorSensor.blue() < 10) || {
-//
-//      }
       else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
         telemetry.addData("ORANGE FOUND",colorSensor.alpha());
+        colorFound = true;
       }
       else{
        telemetry.addData("no color found:(", colorSensor.alpha());
+       colorFound = false;
       }
 
 
