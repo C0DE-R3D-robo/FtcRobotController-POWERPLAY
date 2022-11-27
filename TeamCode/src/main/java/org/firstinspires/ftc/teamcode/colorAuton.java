@@ -3,16 +3,19 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
@@ -49,7 +52,7 @@ import org.firstinspires.ftc.teamcode.ppDriving;
     public DcMotor liftRight = null;
     private ColorSensor colorSensor = null;
 
-
+    private DistanceSensor sensorRange;
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -61,6 +64,16 @@ import org.firstinspires.ftc.teamcode.ppDriving;
         liftLeft = hardwareMap.get(DcMotor.class, "liftLeft");
         liftRight = hardwareMap.get(DcMotor.class, "liftRight");
         colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+        sensorRange = hardwareMap.get(DistanceSensor.class, "sensorRange");
+
+        Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)sensorRange;
+
+        telemetry.addData(">>", "Press start to continue");
+
+        telemetry.addData("range", String.format("%.01f cm", sensorRange.getDistance(DistanceUnit.CM)));
+        telemetry.addData("ID", String.format("%x", sensorTimeOfFlight.getModelID()));
+        telemetry.addData("did time out", Boolean.toString(sensorTimeOfFlight.didTimeoutOccur()));
+        telemetry.update();
         float hsvValues[] = {0F, 0F, 0F};
 
         // values is a reference to the hsvValues array.
@@ -79,7 +92,7 @@ import org.firstinspires.ftc.teamcode.ppDriving;
         boolean bLedOn = true;
 
         // get a reference to our ColorSensor object.
-        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+        //colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
 
         // Set the LED in the beginning
         colorSensor.enableLed(bLedOn);
