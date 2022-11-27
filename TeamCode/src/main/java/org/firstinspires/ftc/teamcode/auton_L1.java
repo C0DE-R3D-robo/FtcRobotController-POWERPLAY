@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -73,7 +74,7 @@ import org.firstinspires.ftc.teamcode.ppHardware;
  */
 
 //@Disabled
-@Autonomous(name=" Zone 1")
+@Autonomous(name=" auton testing")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
 public class auton_L1 extends ppDriving {
@@ -91,26 +92,31 @@ public class auton_L1 extends ppDriving {
     final double TURN_GAIN = 0.01;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
 
     final double MM_PER_INCH = 25.40;   //  Metric conversion
-    private DcMotor frontLeft   = null;
-    private DcMotor frontRight   = null;
-    private DcMotor backLeft   = null;
-    private DcMotor backRight   = null;
-    public DcMotor liftLeft = null;
-    public DcMotor liftRight = null;
-    private ColorSensor colorSensor = null;
+//    private DcMotor frontLeft   = null;
+//    private DcMotor frontRight   = null;
+//    private DcMotor backLeft   = null;
+//    private DcMotor backRight   = null;
+    //    public DcMotor liftLeft = null;
+//    public DcMotor liftRight = null;
+//    private ColorSensor colorSensor = null;
+//    private DistanceSensor sensorRange = null;
 
 
     @Override
     public void runOpMode() {
+        robot = new ppHardware();
         robot.init(hardwareMap);
+        this.setRobot(robot);
 
-        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
-        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
-        backRight  = hardwareMap.get(DcMotor.class, "backRight");
-        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
-        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
-        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+//        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
+//        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+//        backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
+//        backRight  = hardwareMap.get(DcMotor.class, "backRight");
+//        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
+//        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
+//        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+//        sensorRange = hardwareMap.get(DistanceSensor.class, "sensorRange");
+
 
 
         waitForStart();
@@ -131,39 +137,11 @@ public class auton_L1 extends ppDriving {
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
         //rotate(.6,'r',35);//these rotates are for correctional purposes
         move(.6,'f',25);
-        //rotate(.6,'r',45);
+        move(.6,'b',25);
         move(.6,'l',10);
-        //rotate(.6,'r',35);
-        //move(.6,'l',8);
-
-        //color sensor code in auton example code
-//        move(.6,'b',8);
-//        sleep(100);
-//        if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
-//            telemetry.addData("PURPLE FOUND",colorSensor.alpha());
-//            telemetry.update();
-//            move(.6,'b',5);
-//        }
-//        else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
-//            telemetry.addData("BLACK FOUND",colorSensor.alpha());
-//            telemetry.update();
-//            move(.6,'b',5);
-//            move(.6,'r',5);
-//        }
-////
-//        else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
-//            telemetry.addData("ORANGE FOUND",colorSensor.alpha());
-//            telemetry.update();
-//            move(.6,'b',5);
-//            move(.6,'l',5);
-//        }
-//        else{
-//            telemetry.addData("no color found:(", colorSensor.alpha());
-//            telemetry.update();
-//            rotate(.6,'r',5);
-//        }
-//        telemetry.update();
-
+        move(.6,'r',10);
+        rotate(.6,'r',90);
+        rotate(.6,'l',90);
 
 
         //////RIGHTTTTT
