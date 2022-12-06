@@ -81,7 +81,7 @@ public class SensorMRColor extends ppDriving {
     boolean bLedOn = true;
 
     // get a reference to our ColorSensor object.
-    colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+    colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
 
     // Set the LED in the beginning
     colorSensor.enableLed(bLedOn);
@@ -141,7 +141,7 @@ public class SensorMRColor extends ppDriving {
         telemetry.addData("BLACK FOUND",colorSensor.alpha());
         colorFound = true;
       }
-      else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 40) {
+      else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
         telemetry.addData("ORANGE FOUND",colorSensor.alpha());
         colorFound = true;
       }

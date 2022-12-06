@@ -173,34 +173,34 @@ public class TELEOPslay extends LinearOpMode {
             //2nd driver controls only the arm and claw
         // CHASSIS-BOUND HINGE CONTROL
             if (gamepad2.dpad_right){
-                neck.setPower(.5);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
+                neck.setPower(.2);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
             }else{
                 neck.setPower(0);
             }
             if(gamepad2.dpad_left){
-                neck.setPower(-.5);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
+                neck.setPower(-.2);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
             }else{
                 neck.setPower(0);
             }
-//
-//        // ELBOW CONTROL
+
+        // ELBOW CONTROL
             if(gamepad2.dpad_up){
-                elbow.setPower(.5);//should extend claw forward ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(.2);//should extend claw forward ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }
             if (gamepad2.dpad_down){
-                elbow.setPower(-.5);//should retract claw ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(-.2);//should retract claw ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }
 
-//        // CLAW CONTROL
-            if (gamepad2.y){//close on cone ; this is just filler code, we can figure out actual numbers later
-                Claw.setPosition(0.25);
+        // CLAW CONTROL
+            if (gamepad2.dpad_left){//close on cone ; this is just filler code, we can figure out actual numbers later
+                Claw.setPosition(0.75);
             }
-            if(gamepad2.b){//open ; this is just filler code, we can figure out actual numbers later
-                Claw.setPosition(0);
+            if(gamepad2.dpad_right){//open ; this is just filler code, we can figure out actual numbers later
+                Claw.setPosition(.25);
             }
             if(gamepad2.a){//rotate claw ~180 degrees; this is just filler code, we can figure out actual numbers later
                 clawRotate.setPosition(.5);

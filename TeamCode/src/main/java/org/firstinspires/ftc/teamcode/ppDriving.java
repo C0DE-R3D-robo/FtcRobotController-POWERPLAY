@@ -6,10 +6,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-public abstract class ppDriving extends LinearOpMode {
+public abstract class ppDriving extends LinearOpMode{
 
 
-    ppHardware robot = new ppHardware();   // Use a Pushbot's hardware
+    ppHardware robot;   // Use a Pushbot's hardware
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -31,12 +31,14 @@ public abstract class ppDriving extends LinearOpMode {
     final double TURN_GAIN  =   0.01 ;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
 
     final double MM_PER_INCH = 25.40 ;   //  Metric conversion
-    private DcMotor backLeft = null;
-    private DcMotor backRight = null;
-    private DcMotor frontLeft = null;
-    private DcMotor frontRight = null;
+//    private DcMotor backLeft = null;
+//    private DcMotor backRight = null;
+//    private DcMotor frontLeft = null;
+//    private DcMotor frontRight = null;
 
-
+    public void setRobot(ppHardware robot){
+        this.robot = robot;
+    }
     public void motorStop() {
         robot.frontLeft.setPower(0);
         robot.frontRight.setPower(0);
@@ -176,7 +178,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //set drive power for forward
                 robot.frontLeft.setPower(power);
                 robot.frontRight.setPower(power);
-                robot.backLeft.setPower(0.5*power);
+                robot.backLeft.setPower(power);
                 robot.backRight.setPower(power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
@@ -209,7 +211,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //set drive power for forward
                 robot.frontLeft.setPower(-power);
                 robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(0.5*-power);
+                robot.backLeft.setPower(-power);
                 robot.backRight.setPower(-power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
@@ -227,7 +229,7 @@ public abstract class ppDriving extends LinearOpMode {
                 robot.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//helllo
+
                 break;
 
             case 'r':
@@ -248,7 +250,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //set drive power for forward
                 robot.frontLeft.setPower(power);
                 robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(0.5*-power);
+                robot.backLeft.setPower(-power);
                 robot.backRight.setPower(power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
@@ -279,7 +281,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //set drive power for forward
                 robot.frontLeft.setPower(-power);
                 robot.frontRight.setPower(power);
-                robot.backLeft.setPower(0.5*power);
+                robot.backLeft.setPower(power);
                 robot.backRight.setPower(-power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
@@ -319,7 +321,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //set drive power for forward
                 robot.frontLeft.setPower(power);
                 robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(0.5*power);
+                robot.backLeft.setPower(power);
                 robot.backRight.setPower(-power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
@@ -349,7 +351,7 @@ public abstract class ppDriving extends LinearOpMode {
                 //set drive power for forward
                 robot.frontLeft.setPower(-power);
                 robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(0.5*power);
+                robot.backLeft.setPower(power);
                 robot.backRight.setPower(power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())

@@ -92,28 +92,30 @@ public class auton_L1 extends ppDriving {
     final double TURN_GAIN = 0.01;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
 
     final double MM_PER_INCH = 25.40;   //  Metric conversion
-    private DcMotor frontLeft   = null;
-    private DcMotor frontRight   = null;
-    private DcMotor backLeft   = null;
-    private DcMotor backRight   = null;
-//    public DcMotor liftLeft = null;
+//    private DcMotor frontLeft   = null;
+//    private DcMotor frontRight   = null;
+//    private DcMotor backLeft   = null;
+//    private DcMotor backRight   = null;
+    //    public DcMotor liftLeft = null;
 //    public DcMotor liftRight = null;
-    private ColorSensor colorSensor = null;
-    private DistanceSensor sensorRange = null;
+//    private ColorSensor colorSensor = null;
+//    private DistanceSensor sensorRange = null;
 
 
     @Override
     public void runOpMode() {
-        //robot.init(hardwareMap);
+        robot = new ppHardware();
+        robot.init(hardwareMap);
+        this.setRobot(robot);
 
-        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
-        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
-        backRight  = hardwareMap.get(DcMotor.class, "backRight");
+//        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
+//        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+//        backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
+//        backRight  = hardwareMap.get(DcMotor.class, "backRight");
 //        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
 //        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
-        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
-        sensorRange = hardwareMap.get(DistanceSensor.class, "sensorRange");
+//        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+//        sensorRange = hardwareMap.get(DistanceSensor.class, "sensorRange");
 
 
 
