@@ -120,6 +120,7 @@ public class auton_L1 extends ppDriving {
 
 
         waitForStart();
+        armheight(0.2, 10, '1');
 
 //        move(.6, 'f', 5);
 //        //STRAFE LEFT TO CAROUSEL, FACING TEAM WALL.
@@ -136,12 +137,15 @@ public class auton_L1 extends ppDriving {
 //        rotate(.5, 'r', 100);
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
         //rotate(.6,'r',35);//these rotates are for correctional purposes
-        move(.6,'f',25);
-        move(.6,'b',25);
-        move(.6,'l',10);
-        move(.6,'r',10);
-        rotate(.6,'r',90);
-        rotate(.6,'l',90);
+
+        //THIS WAS UNCOMMENTED BTW
+//        move(.6,'f',25);
+//        move(.6,'b',25);
+//        move(.6,'l',10);
+//        move(.6,'r',10);
+//        rotate(.6,'r',90);
+//        rotate(.6,'l',90);
+        //***************************************
 
 
         //////RIGHTTTTT
