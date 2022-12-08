@@ -193,7 +193,7 @@ public class TELEOPslay extends LinearOpMode {
                 elbow.setPower(-1);//should retract claw ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
-            }
+            }//hi
 
         // CLAW CONTROL
             if (gamepad2.a){//close on cone ; this is just filler code, we can figure out actual numbers later -- closing in
