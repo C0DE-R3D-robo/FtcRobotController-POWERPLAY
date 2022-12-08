@@ -505,7 +505,22 @@ public abstract class ppDriving extends LinearOpMode{
 
         }
     }
-
+    public void armheight(double power, long distance, int level) {
+        double ticks = 1120 / 7.5 * distance;
+        switch (level) {
+            case '1':
+                //robot.neck.setTargetPosition((int)ticks);
+                robot.elbow.setTargetPosition((int) ticks);
+                //set run to position
+                robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                //set drive power for forward
+                robot.elbow.setPower(power);
+                robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                break;
+            default:
+                motorStop();
+        }
+    }
 //    public void lift (double power, int level, long moveTime){
 //        robot.rotateLeft.setPower(.05*power);
 //        robot.rotateRight.setPower(.05*power);

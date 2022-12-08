@@ -101,8 +101,8 @@ public class TELEOPslay extends LinearOpMode {
         // Reverse the direction (flip FORWARD <-> REVERSE ) of any wheel that runs backward
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         flDrive.setDirection(DcMotor.Direction.REVERSE);
-        blDrive.setDirection(DcMotor.Direction.REVERSE);
-        frDrive.setDirection(DcMotor.Direction.REVERSE);
+        blDrive.setDirection(DcMotor.Direction.FORWARD);
+        frDrive.setDirection(DcMotor.Direction.FORWARD);
         brDrive.setDirection(DcMotor.Direction.FORWARD);
         neck.setDirection(DcMotor.Direction.FORWARD);
         elbow.setDirection(DcMotor.Direction.REVERSE);
@@ -159,10 +159,10 @@ public class TELEOPslay extends LinearOpMode {
 
 
             // Send calculated power to wheels
-            flDrive.setPower(flPower);
-            frDrive.setPower(frPower);
-            blDrive.setPower(blPower);
-            brDrive.setPower(brPower);
+            flDrive.setPower(0.8*flPower);
+            frDrive.setPower(0.8*frPower);
+            blDrive.setPower(0.8*blPower);
+            brDrive.setPower(0.8*brPower);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
@@ -173,40 +173,44 @@ public class TELEOPslay extends LinearOpMode {
             //2nd driver controls only the arm and claw
         // CHASSIS-BOUND HINGE CONTROL
             if (gamepad2.dpad_right){
-                neck.setPower(.2);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
+                neck.setPower(.8);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
             }else{
                 neck.setPower(0);
             }
             if(gamepad2.dpad_left){
-                neck.setPower(-.2);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
+                neck.setPower(-.8);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
             }else{
                 neck.setPower(0);
             }
 
         // ELBOW CONTROL
             if(gamepad2.dpad_up){
-                elbow.setPower(.2);//should extend claw forward ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(1);//should extend claw forward ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }
             if (gamepad2.dpad_down){
-                elbow.setPower(-.2);//should retract claw ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(-1);//should retract claw ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }
 
         // CLAW CONTROL
-            if (gamepad2.dpad_left){//close on cone ; this is just filler code, we can figure out actual numbers later
-                Claw.setPosition(0.75);
+            if (gamepad2.a){//close on cone ; this is just filler code, we can figure out actual numbers later -- closing in
+                Claw.setPosition(1);
+                telemetry.addData("claw should open", flPower);
             }
-            if(gamepad2.dpad_right){//open ; this is just filler code, we can figure out actual numbers later
+            if(gamepad2.y){//open ; this is just filler code, we can figure out actual numbers later -- going back
                 Claw.setPosition(.25);
+                telemetry.addData("claw should close", flPower);
             }
-            if(gamepad2.a){//rotate claw ~180 degrees; this is just filler code, we can figure out actual numbers later
-                clawRotate.setPosition(.5);
+            if(gamepad2.b){//rotate claw ~180 degrees; this is just filler code, we can figure out actual numbers later
+                clawRotate.setPosition(1);
+                telemetry.addData("claw rotate", flPower);
             }
             if(gamepad2.x){//rotate claw back to original position
                 clawRotate.setPosition(0);
+                telemetry.addData("claw rotate back", flPower);
             }
         }
     }}
