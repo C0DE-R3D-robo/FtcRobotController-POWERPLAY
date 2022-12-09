@@ -78,7 +78,7 @@ import org.firstinspires.ftc.teamcode.ppHardware;
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
 public class auton_L1 extends ppDriving {
-    public int x;
+    public int x;//hello
     public int y;
 
     /* Declare OpMode members. */
@@ -86,7 +86,7 @@ public class auton_L1 extends ppDriving {
 
     final double DESIRED_DISTANCE = 8.0; //  this is how close the camera should get to the target (inches)
     //  The GAIN constants set the relationship between the measured position error,
-    //  and how much power is applied to the drive motors.  Drive = Error * Gain
+    //  and how much power is applied to the drive motrs.  Drive = Error * Gain
     //  Make these values smaller for smoother control.
     final double SPEED_GAIN = 0.02;   //  Speed Control "Gain". eg: Ramp up to 50% power at a 25 inch error.   (0.50 / 25.0)
     final double TURN_GAIN = 0.01;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
