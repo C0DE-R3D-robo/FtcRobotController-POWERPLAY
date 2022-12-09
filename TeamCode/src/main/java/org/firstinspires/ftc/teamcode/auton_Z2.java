@@ -64,7 +64,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 //@Disabled
-@Autonomous(name="Any side Zone 2")
+@Autonomous(name="ANY SIDE LEFT")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
 public class auton_Z2 extends ppDriving {
@@ -126,6 +126,7 @@ public class auton_Z2 extends ppDriving {
 
         //rotate(.6,'r',35);//these rotates are for correctional purposes
         move(.6,'f',25);
+        move(.6,'l', 15);
         //rotate(.6,'r',35);
         //move(.6,'f',5);
 //        inLeft.setPosition(.5);
