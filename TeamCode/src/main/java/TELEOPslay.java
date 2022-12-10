@@ -139,7 +139,7 @@ public class TELEOPslay extends LinearOpMode {
             flPower  /= max;
             frPower /= max;
             blPower   /= max;
-            brPower  /= max;
+            brPower  /= max;//hello
 
             // This is test code:
             //
