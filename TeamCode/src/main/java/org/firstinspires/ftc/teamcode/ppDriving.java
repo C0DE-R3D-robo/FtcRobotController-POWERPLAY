@@ -512,10 +512,11 @@ public abstract class ppDriving extends LinearOpMode{
                 //robot.neck.setTargetPosition((int)ticks);
                 robot.elbow.setTargetPosition((int) ticks);
                 //set run to position
-                robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
                 //set drive power for forward
                 robot.elbow.setPower(power);
                 robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 break;
             default:
                 motorStop();

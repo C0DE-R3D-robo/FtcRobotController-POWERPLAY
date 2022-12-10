@@ -74,10 +74,10 @@ import org.firstinspires.ftc.teamcode.ppHardware;
  */
 
 //@Disabled
-@Autonomous(name=" zone 2")
+@Autonomous(name=" auton testing presets")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
-public class auton_L1 extends ppDriving {
+public class autonTesting extends ppDriving {
     public int x;//hello
     public int y;
 
@@ -146,7 +146,8 @@ public class auton_L1 extends ppDriving {
 //        robot.backRight.setPower(19);
 
 
-        move(.2,'f',9);
+        //move(.2,'f',9);
+        armheight(0.5,10,1);
 
 //        move(.6,'b',25);
 //        move(.6,'l',10);

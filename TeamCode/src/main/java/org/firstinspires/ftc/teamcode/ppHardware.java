@@ -74,7 +74,7 @@ public class ppHardware {
         // Set Direction
         frontLeft.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         frontRight.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
-        backLeft.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
+        backLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRight.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         neck.setDirection(DcMotor.Direction.FORWARD);
         elbow.setDirection(DcMotor.Direction.REVERSE);

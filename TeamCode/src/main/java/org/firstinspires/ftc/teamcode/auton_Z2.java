@@ -30,11 +30,21 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
+import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.ppHardware;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -64,11 +74,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 //@Disabled
-@Autonomous(name="ANY SIDE LEFT")
+@Autonomous(name=" zone 3")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
 public class auton_Z2 extends ppDriving {
-    public int x;
+    public int x;//hello
     public int y;
 
     /* Declare OpMode members. */
@@ -76,36 +86,38 @@ public class auton_Z2 extends ppDriving {
 
     final double DESIRED_DISTANCE = 8.0; //  this is how close the camera should get to the target (inches)
     //  The GAIN constants set the relationship between the measured position error,
-    //  and how much power is applied to the drive motors.  Drive = Error * Gain
+    //  and how much power is applied to the drive motrs.  Drive = Error * Gain
     //  Make these values smaller for smoother control.
     final double SPEED_GAIN = 0.02;   //  Speed Control "Gain". eg: Ramp up to 50% power at a 25 inch error.   (0.50 / 25.0)
     final double TURN_GAIN = 0.01;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
 
     final double MM_PER_INCH = 25.40;   //  Metric conversion
-    private DcMotor frontLeft   = null;
-    private DcMotor frontRight   = null;
-    private DcMotor backLeft   = null;
-    private DcMotor backRight   = null;
-    public DcMotor liftLeft = null;
-    public DcMotor liftRight = null;
-    private ColorSensor colorSensor = null;
-//    private Servo inRight = null;
-//    private Servo inLeft = null;
+//    private DcMotor frontLeft   = null;
+//    private DcMotor frontRight   = null;
+//    private DcMotor backLeft   = null;
+//    private DcMotor backRight   = null;
+    //    public DcMotor liftLeft = null;
+//    public DcMotor liftRight = null;
+//    private ColorSensor colorSensor = null;
+//    private DistanceSensor sensorRange = null;
 
 
     @Override
     public void runOpMode() {
+        robot = new ppHardware();
         robot.init(hardwareMap);
+        this.setRobot(robot);
 
-        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
-        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
-        backRight  = hardwareMap.get(DcMotor.class, "backRight");
-        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
-        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
-        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
-//        inLeft = hardwareMap.get(Servo.class,"inLeft");
-//        inRight = hardwareMap.get(Servo.class,"inRight");
+//        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
+//        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+//        backLeft   = hardwareMap.get(DcMotor.class, "backLeft");
+//        backRight  = hardwareMap.get(DcMotor.class, "backRight");
+//        liftLeft = hardwareMap.get(DcMotor.class,"liftLeft");
+//        liftRight = hardwareMap.get(DcMotor.class,"liftRight");
+//        colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
+//        sensorRange = hardwareMap.get(DistanceSensor.class, "sensorRange");
+
+
 
         waitForStart();
 
@@ -122,42 +134,37 @@ public class auton_Z2 extends ppDriving {
 //        //move right
 //        rotate(.5, 'l', 100);
 //        rotate(.5, 'r', 100);
+        //armheight(0.2, 10, '1');
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
-
         //rotate(.6,'r',35);//these rotates are for correctional purposes
-        move(.6,'f',25);
-        move(.6,'l', 15);
-        //rotate(.6,'r',35);
-        //move(.6,'f',5);
-//        inLeft.setPosition(.5);
-//        inRight.setPosition(-.5);//intake cone
-        //color sensor code in auton example code
-//        move(.6,'b',8);
-//        sleep(100);
-//        if (Math.abs(colorSensor.green() + (colorSensor.red()/2) - colorSensor.blue()) < 35) {
-//            telemetry.addData("PURPLE FOUND",colorSensor.alpha());
-//            telemetry.update();
-//            move(.6,'b',5);
-//        }
-//        else if (colorSensor.green() > colorSensor.blue() && colorSensor.blue() > colorSensor.red()){
-//            telemetry.addData("BLACK FOUND",colorSensor.alpha());
-//            telemetry.update();
-//            move(.6,'b',5);
-//            move(.6,'r',5);
-//        }
-////
-//        else if (Math.abs(colorSensor.blue() + (colorSensor.red()/2) - colorSensor.green()) < 30) {
-//            telemetry.addData("ORANGE FOUND",colorSensor.alpha());
-//            telemetry.update();
-//            move(.6,'b',5);
-//            move(.6,'l',5);
-//        }
-//        else{
-//            telemetry.addData("no color found:(", colorSensor.alpha());
-//            telemetry.update();
-//            rotate(.6,'r',5);
-//        }
-//        telemetry.update();
+//        robot.backLeft.setPower(1);
+//        sleep(10000);
+//        robot.frontLeft.setPower(1);
+//        sleep(10000);
+//        robot.frontRight.setPower(1);
+//        sleep(10000);
+//        robot.backRight.setPower(19);
 
+
+        move(.2,'f',10);
+        move(.2,'l',6);
+        move(.2,'b',7);
+
+//        move(.6,'b',25);
+//        move(.6,'l',10);
+//        move(.6,'r',10);
+//        rotate(.6,'r',90);
+//        rotate(.6,'l',90);
+
+
+        //////RIGHTTTTT
+        //move(.6,'f',28);
+//        rotate(.6,'r',45);//these rotates are for correctional purposes
+//        move(.6,'r',10);
+//        rotate(.6,'l',25);
+//        move(.6,'f',3);
+//        move(.6,'r',17);
+//        rotate(.6,'l',35);
+//        move(.6,'r',6);
     }
 }

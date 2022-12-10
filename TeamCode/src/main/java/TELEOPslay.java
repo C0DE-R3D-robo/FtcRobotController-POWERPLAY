@@ -159,10 +159,18 @@ public class TELEOPslay extends LinearOpMode {
 
 
             // Send calculated power to wheels
-            flDrive.setPower(0.8*flPower);
-            frDrive.setPower(0.8*frPower);
-            blDrive.setPower(0.8*blPower);
-            brDrive.setPower(0.8*brPower);
+            flDrive.setPower(0.9*flPower);
+            frDrive.setPower(0.9*frPower);
+            blDrive.setPower(0.9*blPower);
+            brDrive.setPower(0.9*brPower);
+
+            if (gamepad1.left_bumper){
+                flDrive.setPower(0.01*flPower);
+                frDrive.setPower(0.01*frPower);
+                blDrive.setPower(0.01*blPower);
+                brDrive.setPower(0.01*brPower);
+            }
+
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
