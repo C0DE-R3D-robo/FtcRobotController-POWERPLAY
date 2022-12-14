@@ -138,7 +138,7 @@ public class auton_L1 extends ppDriving {
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
         //rotate(.6,'r',35);//these rotates are for correctional purposes
 //        robot.backLeft.setPower(1);
-//        sleep(10000);
+//        sleep(10000);//hello
 //        robot.frontLeft.setPower(1);
 //        sleep(10000);
 //        robot.frontRight.setPower(1);
