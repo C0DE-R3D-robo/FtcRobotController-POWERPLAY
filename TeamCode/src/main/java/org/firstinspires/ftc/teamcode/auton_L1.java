@@ -134,7 +134,7 @@ public class auton_L1 extends ppDriving {
 //        //move right
 //        rotate(.5, 'l', 100);
 //        rotate(.5, 'r', 100);
-        //armheight(0.2, 10, '1');
+        //armheight(0.2, 10, '1');//hi
         //PLS NOTE THAT THIS CODE IS FOR WHEN TEH ROBOT IS FACING FORWARD AT THE START
         //rotate(.6,'r',35);//these rotates are for correctional purposes
 //        robot.backLeft.setPower(1);
