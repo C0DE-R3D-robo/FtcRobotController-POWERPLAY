@@ -146,7 +146,7 @@ public class auton_L1 extends ppDriving {
 //        robot.backRight.setPower(19);
 
 
-        move(.2,'f',9);
+        diagonal(0.3,'1',10);
 
 //        move(.6,'b',25);
 //        move(.6,'l',10);

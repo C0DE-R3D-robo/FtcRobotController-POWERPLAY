@@ -9,7 +9,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public abstract class ppDriving extends LinearOpMode{
 
 
-    ppHardware robot;   // Use a Pushbot's hardware
+    ppHardware robot = new ppHardware();
+    //rebornHardware robot = new rebornHardware();// Use a Pushbot's hardware
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -178,7 +179,7 @@ public abstract class ppDriving extends LinearOpMode{
                 //set drive power for forward
                 robot.frontLeft.setPower(power);
                 robot.frontRight.setPower(power);
-                robot.backLeft.setPower(power);
+                robot.backLeft.setPower(0.1*power);
                 robot.backRight.setPower(power);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
@@ -198,7 +199,7 @@ public abstract class ppDriving extends LinearOpMode{
 
 
                 //set target position
-                robot.frontLeft.setTargetPosition((int)-ticks);
+                robot.frontLeft.setTargetPosition((int)ticks);
                 robot.backLeft.setTargetPosition((int) -ticks);
                 robot.frontRight.setTargetPosition((int) -ticks);
                 robot.backRight.setTargetPosition((int) -ticks);
@@ -213,6 +214,7 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.frontRight.setPower(-power);
                 robot.backLeft.setPower(-power);
                 robot.backRight.setPower(-power);
+
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
                 {
@@ -379,13 +381,27 @@ public abstract class ppDriving extends LinearOpMode{
         switch(direction) {
             case '1':
                 //forward right
+//                robot.backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//                robot.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//
+//                robot.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//                robot.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//
+//                robot.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//                robot.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//
+//                robot.backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//                robot.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
                 //set target position
-
-                robot.frontLeft.setTargetPosition((int) (ticks));
+                telemetry.addLine("diagonal");
+                robot.frontLeft.setTargetPosition((int) ticks);
                 robot.backLeft.setTargetPosition(0);
                 robot.frontRight.setTargetPosition(0);
                 robot.backRight.setTargetPosition((int) ticks);
+
+
                 //set run to position
                 robot.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);

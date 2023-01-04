@@ -29,18 +29,20 @@ import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.firstinspires.ftc.teamcode.ppHardware;
+import org.firstinspires.ftc.teamcode.ppDriving;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
 import java.util.ArrayList;
 
 @TeleOp
-public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
+public class AprilTagAutonomousInitDetectionExample extends ppDriving
 {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
-
+    ppHardware robot = new ppHardware();
     // Lens intrinsics
     // UNITS ARE PIXELS
     // NOTE: this calibration is for the C920 webcam at 800x448.
@@ -62,6 +64,9 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
 
     @Override
     public void runOpMode()
+//    robot = new ppHardware();
+    //robot.init(hardwareMap);
+//    this.setRobot(robot);
     {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
@@ -176,6 +181,7 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
         }else if(tagOfInterest.id == MIDDLE){
             //middle trajectory
             telemetry.addLine("zone 2 found, moving forward");
+            move(.2,'f',10);
         }else{
             //right trajectory
             telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
