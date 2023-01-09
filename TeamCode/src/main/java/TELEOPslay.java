@@ -159,12 +159,12 @@ public class TELEOPslay extends LinearOpMode {
 
 
             // Send calculated power to wheels
-            flDrive.setPower(0.9*flPower);
-            frDrive.setPower(0.9*frPower);
-            blDrive.setPower(0.9*blPower);
-            brDrive.setPower(0.9*brPower);
+            flDrive.setPower(0.75*flPower);
+            frDrive.setPower(0.75*frPower);
+            blDrive.setPower(0.75*blPower);
+            brDrive.setPower(0.75*brPower);
 
-            if (gamepad1.left_bumper){
+            if (gamepad1.left_bumper){ //hold down left bumper for slow mode
                 flDrive.setPower(0.01*flPower);
                 frDrive.setPower(0.01*frPower);
                 blDrive.setPower(0.01*blPower);

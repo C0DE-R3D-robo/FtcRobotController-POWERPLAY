@@ -160,6 +160,19 @@ public abstract class ppDriving extends LinearOpMode{
     public void move(double power, char direction, double distance){
         double ticks = COUNTS_PER_INCH * distance;
 //        double ticks = 7.5* distance;
+        //defining the power variable for later in the cases (these 'max' calculations make sure we drive straight so NO MORE SPINNING!!!)
+        double max;
+        double flPower  = power;
+        double frPower = power;
+        double blPower   = power;
+        double brPower  = power;
+        max = Math.max(Math.abs(flPower), Math.abs(frPower));
+        max = Math.max(max, Math.abs(blPower));
+        max = Math.max(max, Math.abs(brPower));
+        flPower  /= max;
+        frPower /= max;
+        blPower   /= max;
+        brPower  /= max;
         switch(direction){
             case 'f':
                 //to go forward
@@ -176,14 +189,19 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                 //set drive power for forward
-                robot.frontLeft.setPower(power);
-                robot.frontRight.setPower(power);
-                robot.backLeft.setPower(power);
-                robot.backRight.setPower(power);
+                robot.frontLeft.setPower(flPower);
+                robot.frontRight.setPower(frPower);
+                robot.backLeft.setPower(blPower);
+                robot.backRight.setPower(brPower);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
                 {
-
+                    telemetry.clear();
+                    telemetry.addData("Front Left Pos", robot.frontLeft.getCurrentPosition());
+                    telemetry.addData("Front Right Pos", robot.frontRight.getCurrentPosition());
+                    telemetry.addData("Back Left Pos", robot.backLeft.getCurrentPosition());
+                    telemetry.addData("Back Right (Mephistopheles) Pos", robot.backRight.getCurrentPosition());
+                    telemetry.update();
                 }
                 motorStop();
                 robot.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -208,11 +226,11 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                //set drive power for forward
-                robot.frontLeft.setPower(-power);
-                robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(-power);
-                robot.backRight.setPower(-power);
+                //set drive power for backward
+                robot.frontLeft.setPower(-flPower);
+                robot.frontRight.setPower(-frPower);
+                robot.backLeft.setPower(-blPower);
+                robot.backRight.setPower(-brPower);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
                 {
@@ -248,10 +266,10 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                 //set drive power for forward
-                robot.frontLeft.setPower(power);
-                robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(-power);
-                robot.backRight.setPower(power);
+                robot.frontLeft.setPower(flPower);
+                robot.frontRight.setPower(-frPower);
+                robot.backLeft.setPower(-blPower);
+                robot.backRight.setPower(brPower);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
                 {
@@ -279,10 +297,10 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                 //set drive power for forward
-                robot.frontLeft.setPower(-power);
-                robot.frontRight.setPower(power);
-                robot.backLeft.setPower(power);
-                robot.backRight.setPower(-power);
+                robot.frontLeft.setPower(-flPower);
+                robot.frontRight.setPower(frPower);
+                robot.backLeft.setPower(blPower);
+                robot.backRight.setPower(-brPower);
 
                 while (robot.frontLeft.isBusy() && robot.backLeft.isBusy() && robot.frontRight.isBusy() && robot.backRight.isBusy())
                 {
@@ -304,6 +322,7 @@ public abstract class ppDriving extends LinearOpMode{
     public void rotate(double power, char direction, double angle) {
         double ticks = COUNTS_PER_INCH * angle / 90 * INCHES_FOR_RIGHT_ANGLE;
 //        double ticks = 7.5* distance;
+        double max;
         switch(direction){
             case 'r':
                 //to turn clockwise
@@ -317,6 +336,7 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
                 //set drive power for forward
                 robot.frontLeft.setPower(power);

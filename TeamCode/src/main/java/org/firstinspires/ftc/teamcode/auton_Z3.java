@@ -74,10 +74,10 @@ import org.firstinspires.ftc.teamcode.ppHardware;
  */
 
 //@Disabled
-@Autonomous(name=" zone 1???")
+@Autonomous(name=" zone 3")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
-public class auton_L3 extends ppDriving {
+public class auton_Z3 extends ppDriving {
     public int x;//hello
     public int y;
 
@@ -147,8 +147,8 @@ public class auton_L3 extends ppDriving {
 
 
         move(.2,'f',10);
-        //rotate(.3,'r',20);
-        move(.2,'l',10);
+        move(.2,'l',6);
+        move(.2,'b',7);
 
 //        move(.6,'b',25);
 //        move(.6,'l',10);
