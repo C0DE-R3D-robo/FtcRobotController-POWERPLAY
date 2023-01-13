@@ -21,6 +21,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -31,14 +32,14 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@TeleOp
+@Autonomous(name = "AprilTag Slay")
 public class AprilTagAutonomousInitDetectionExample extends ppDriving
 {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
-    ppHardware robot = new ppHardware();
+
     // Lens intrinsics
     // UNITS ARE PIXELS
     // NOTE: this calibration is for the C920 webcam at 800x448.
@@ -59,11 +60,11 @@ public class AprilTagAutonomousInitDetectionExample extends ppDriving
     AprilTagDetection tagOfInterest = null;
 
     @Override
-    public void runOpMode()
-//    robot = new ppHardware();
-    //robot.init(hardwareMap);
-//    this.setRobot(robot);
-    {
+    public void runOpMode(){
+    robot = new ppHardware();
+    robot.init(hardwareMap);
+    this.setRobot(robot);
+        ppHardware robot;
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
@@ -159,14 +160,12 @@ public class AprilTagAutonomousInitDetectionExample extends ppDriving
         {
             telemetry.addLine("Tag snapshot:\n");
             tagToTelemetry(tagOfInterest);
-            telemetry.update();
         }
         else
         {
             telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
-            telemetry.update();
         }
-
+        telemetry.update();
         /* Actually do something useful */
         if(tagOfInterest.id == RIGHT){
             //default trajectory here if preferred
@@ -177,15 +176,15 @@ public class AprilTagAutonomousInitDetectionExample extends ppDriving
         }else if(tagOfInterest.id == MIDDLE){
             //middle trajectory
             telemetry.addLine("zone 2 found, moving forward");
-            move(.2,'f',10);
+            move(.2,'l',10);
         }else{
             //right trajectory
             telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
         }
-
+        telemetry.update();
 
         /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
-        while (opModeIsActive()) {sleep(20);}
+//        while (opModeIsActive()) {sleep(20);}
     }
 
     void tagToTelemetry(AprilTagDetection detection)
