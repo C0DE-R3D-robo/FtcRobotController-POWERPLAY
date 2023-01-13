@@ -543,7 +543,7 @@ public abstract class ppDriving extends LinearOpMode{
                 robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 break;
             case '2':
-                robot.elbow.setTargetPosition((int)ticks);
+                robot.elbow.setTargetPosition((int)-ticks);
                 robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.elbow.setPower(power);
                 while(robot.elbow.isBusy()){

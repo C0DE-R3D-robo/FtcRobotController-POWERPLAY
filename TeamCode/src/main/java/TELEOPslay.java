@@ -204,12 +204,12 @@ public class TELEOPslay extends LinearOpMode {
             }//hi
 
         // CLAW CONTROL
-            if (gamepad2.a){//close on cone ; this is just filler code, we can figure out actual numbers later -- closing in
-                Claw.setPosition(1);
+            if (gamepad2.a){//open ; this is just filler code, we can figure out actual numbers later -- closing in
+                Claw.setPosition(.75);
                 telemetry.addData("claw should open", flPower);
             }
-            if(gamepad2.y){//open ; this is just filler code, we can figure out actual numbers later -- going back
-                Claw.setPosition(.25);
+            if(gamepad2.y){//close ; this is just filler code, we can figure out actual numbers later -- going back
+                Claw.setPosition(.13);
                 telemetry.addData("claw should close", flPower);
             }
             if(gamepad2.b){//rotate claw ~180 degrees; this is just filler code, we can figure out actual numbers later
@@ -220,5 +220,6 @@ public class TELEOPslay extends LinearOpMode {
                 clawRotate.setPosition(0);
                 telemetry.addData("claw rotate back", flPower);
             }
+            telemetry.update();
         }
     }}
