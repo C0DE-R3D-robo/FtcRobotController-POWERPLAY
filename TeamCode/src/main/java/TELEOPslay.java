@@ -159,16 +159,16 @@ public class TELEOPslay extends LinearOpMode {
 
 
             // Send calculated power to wheels
-            flDrive.setPower(0.75*flPower);
-            frDrive.setPower(0.75*frPower);
-            blDrive.setPower(0.75*blPower);
-            brDrive.setPower(0.75*brPower);
+            flDrive.setPower(0.025*flPower);
+            frDrive.setPower(0.025*frPower);
+            blDrive.setPower(0.025*blPower);
+            brDrive.setPower(0.025*brPower);
 
             if (gamepad1.left_bumper){ //hold down left bumper for slow mode
-                flDrive.setPower(0.01*flPower);
-                frDrive.setPower(0.01*frPower);
-                blDrive.setPower(0.01*blPower);
-                brDrive.setPower(0.01*brPower);
+                flDrive.setPower(0.005*flPower);
+                frDrive.setPower(0.005*frPower);
+                blDrive.setPower(0.005*blPower);
+                brDrive.setPower(0.005*brPower);
             }
 
 
@@ -220,6 +220,6 @@ public class TELEOPslay extends LinearOpMode {
                 clawRotate.setPosition(0);
                 telemetry.addData("claw rotate back", flPower);
             }
-            telemetry.update();
         }
+        telemetry.update();
     }}
