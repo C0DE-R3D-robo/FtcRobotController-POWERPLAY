@@ -147,7 +147,7 @@ public class autonTesting extends ppDriving {
 
 
         //move(.2,'f',9);
-        armheight(0.5,10,1);
+        armheight(0.5,10,'1');
 
 //        move(.6,'b',25);
 //        move(.6,'l',10);

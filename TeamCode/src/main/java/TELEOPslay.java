@@ -181,12 +181,12 @@ public class TELEOPslay extends LinearOpMode {
             //2nd driver controls only the arm and claw
         // CHASSIS-BOUND HINGE CONTROL
             if (gamepad2.dpad_right){
-                neck.setPower(.8);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
+                neck.setPower(1);//should hinge arm forward ; this is just filler code, we can figure out actual numbers later
             }else{
                 neck.setPower(0);
             }
             if(gamepad2.dpad_left){
-                neck.setPower(-.8);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
+                neck.setPower(-1);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
             }else{
                 neck.setPower(0);
             }
@@ -198,7 +198,7 @@ public class TELEOPslay extends LinearOpMode {
                 elbow.setPower(0);
             }
             if (gamepad2.dpad_down){
-                elbow.setPower(-1);//should retract claw ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(-.5);//should retract claw ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }//hi
