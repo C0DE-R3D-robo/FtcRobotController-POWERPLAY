@@ -74,10 +74,10 @@ import org.firstinspires.ftc.teamcode.ppHardware;
  */
 
 //@Disabled
-@Autonomous(name=" zone 1")
+@Autonomous(name=" zone 2")
 
 //NEED TO CORRECT THE MOVEMENT AND ORIENTATION BEFORE RUNNING. IT YEETS ITSELF FORWARD WHEN RUN
-public class auton_Z1 extends ppDriving {
+public class auton_L1 extends ppDriving {
     public int x;//hello
     public int y;
 
@@ -118,14 +118,8 @@ public class auton_Z1 extends ppDriving {
 //        sensorRange = hardwareMap.get(DistanceSensor.class, "sensorRange");
 
 
+
         waitForStart();
-        /*
-        HI NEHAAAAAAAAAAAAAAAAAAAAAAAAAAAA - THIS IS A NOTE FOR U
-        so i fixed the 'move' method in ppDriving, it no longer spins out lmao
-        NOW all u need to do is use that to drive to each zone and LMK how it works
-        -- also, we dont need to worry about the 'diagonal' method in ppDriving bc we never use it
-        AND 'rotate' still works fine for any correctional stuff we might need
-         */
 
 //        move(.6, 'f', 5);
 //        //STRAFE LEFT TO CAROUSEL, FACING TEAM WALL.
@@ -151,7 +145,9 @@ public class auton_Z1 extends ppDriving {
 //        sleep(10000);
 //        robot.backRight.setPower(19);
 
-        //rotate(.3,'r',20);
+
+        diagonal(0.3,'1',10);
+
 //        move(.6,'b',25);
 //        move(.6,'l',10);
 //        move(.6,'r',10);
