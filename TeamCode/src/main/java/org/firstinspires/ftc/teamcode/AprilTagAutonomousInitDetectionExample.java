@@ -170,16 +170,25 @@ public class AprilTagAutonomousInitDetectionExample extends ppDriving
         if(tagOfInterest.id == RIGHT){
             //default trajectory here if preferred
             telemetry.addLine("zone 3 found, moving right");
+            move(.2,'r',9.5);
+            move(.2,'f',11);
         }else if(tagOfInterest.id == LEFT){
-            //left trajectory
             telemetry.addLine("zone 1 found, moving left");
+
+            move(.5,'l',14);
+            move(.5,'f',8);
+            //left trajectory
         }else if(tagOfInterest.id == MIDDLE){
             //middle trajectory
             telemetry.addLine("zone 2 found, moving forward");
-            move(.2,'l',10);
+//            move(.01,'l',1);
+//            move(.005,'f',7);
+            //rotate(.1,'l',35);
         }else{
             //right trajectory
             telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
+            move(.05,'r',9.5);
+            move(.05,'f',11);
         }
         telemetry.update();
 
