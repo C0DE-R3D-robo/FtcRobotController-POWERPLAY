@@ -525,37 +525,38 @@ public abstract class ppDriving extends LinearOpMode{
 
         }
     }//hi
-    public void armheight(double power, long distance, char level) {
-        double ticks = 1120 / 7.5 * distance;
-        switch (level) {
-            case '1':
-                //robot.neck.setTargetPosition((int)ticks);
-                robot.elbow.setTargetPosition((int) ticks);
-                //set run to position
-                robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                //set drive power for forward
-                robot.elbow.setPower(power);
+    public void armheight(double power) {
+        //double ticks = 1120 / 7.5 * distance;
 
-                while (robot.elbow.isBusy()) {
+        robot.Claw.setPosition(.13);
+        robot.elbow.setTargetPosition((int) 1500);
+        //set run to position
+        robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //set drive power for forward
+        robot.elbow.setPower(power);
 
-                }
-                motorStop();
-                robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                break;
-            case '2':
-                robot.elbow.setTargetPosition((int)-ticks);
-                robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.elbow.setPower(power);
-                while(robot.elbow.isBusy()){
+        while (robot.elbow.isBusy()) {
 
-                }
-                motorStop();
-                robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                break;
-
-            default:
-                motorStop();
         }
+        motorStop();
+
+
+
+        robot.neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        robot.neck.setTargetPosition((int) 100);
+        //set run to position
+        robot.neck.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //set drive power for forward
+        robot.neck.setPower(-power);
+
+        while (robot.neck.isBusy()) {
+
+        }
+        motorStop();
+        robot.neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.clawRotate.setPosition(0);
+        //robot.Claw.setPosition(.75);
     }
 //    public void lift (double power, int level, long moveTime){
 //        robot.rotateLeft.setPower(.05*power);

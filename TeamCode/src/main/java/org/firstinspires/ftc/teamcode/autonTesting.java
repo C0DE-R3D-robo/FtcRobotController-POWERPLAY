@@ -149,7 +149,7 @@ public class autonTesting extends ppDriving {
         //move(.3,'f',8);
 
         //move(.2,'f',9);
-        //armheight(0.5,10,'1');
+        armheight(0.1);
        //diagonal(0.3,'1',16);
         telemetry.addLine("before move");
         //RIGHT CODEEEEEEEE
