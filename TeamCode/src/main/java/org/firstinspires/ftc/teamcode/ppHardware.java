@@ -92,6 +92,7 @@ public class ppHardware {
         backRight.setPower(0);
         neck.setPower(0);
         elbow.setPower(0);
+        Claw.setPosition(.1);
 
 //        rotateLeft.setPower(0);
 //        rotateRight.setPower(0);

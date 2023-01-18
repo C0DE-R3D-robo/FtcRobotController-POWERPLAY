@@ -528,35 +528,35 @@ public abstract class ppDriving extends LinearOpMode{
     public void armheight(double power) {
         //double ticks = 1120 / 7.5 * distance;
 
-        robot.Claw.setPosition(.13);
-        robot.elbow.setTargetPosition((int) 1500);
+        robot.Claw.setPosition(.10);//close claw on cone
+        robot.elbow.setTargetPosition(1100);
         //set run to position
         robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //set drive power for forward
-        robot.elbow.setPower(power);
+        robot.elbow.setPower(power);//lift up with arm still extended
 
         while (robot.elbow.isBusy()) {
 
         }
-        motorStop();
+//        robot.elbow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);//
 
-
-
-        robot.neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        robot.neck.setTargetPosition((int) 100);
+        robot.neck.setTargetPosition(-1000);
         //set run to position
         robot.neck.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.clawRotate.setPosition(0);//flip claw
         //set drive power for forward
-        robot.neck.setPower(-power);
-
+        robot.neck.setPower(power);//lower claw
         while (robot.neck.isBusy()) {
 
         }
-        motorStop();
-        robot.neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.clawRotate.setPosition(0);
-        //robot.Claw.setPosition(.75);
+//        robot.neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Claw.setPosition(.75);//open/drop cone
+        sleep(3000);
+        robot.clawRotate.setPosition(1);//flip claw back
+        robot.Claw.setPosition(.1);//close
+        // delay
+
     }
 //    public void lift (double power, int level, long moveTime){
 //        robot.rotateLeft.setPower(.05*power);
