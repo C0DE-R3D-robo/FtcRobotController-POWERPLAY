@@ -174,12 +174,14 @@ public class TELEOPslay extends LinearOpMode {
                 frDrive.setPower(0.25*frPower);
                 blDrive.setPower(0.25*blPower);
                 brDrive.setPower(0.25*brPower);
+                telemetry.addData("Touch Sensor Pressed", limit.getValue());
             }
             if (gamepad1.right_bumper){ //hold down left bumper for slow mode
                 flDrive.setPower(0.7*flPower);
                 frDrive.setPower(0.7*frPower);
                 blDrive.setPower(0.7*blPower);
                 brDrive.setPower(0.7*brPower);
+                telemetry.addData("Touch Sensor Pressed", limit.getValue());
             }
 
 
@@ -204,21 +206,25 @@ public class TELEOPslay extends LinearOpMode {
             }else{
                 neck.setPower(0);
             }
-
+            telemetry.addData("Touch Sensor Pressed", limit.getValue());
         // ELBOW CONTROL
             if(gamepad2.dpad_up){
-                elbow.setPower(1);//should lift arm upwards ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(0.8);//should lift arm upwards ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }
-            if ((gamepad2.dpad_down) && (!limit.isPressed())){
-                telemetry.addData("GO","YOU'RE GOING FAR DOWN!!");
-                elbow.setPower(-.5);//should lower arm down; this is just filler code, we can figure out actual numbers later
-            }else{
-                telemetry.addData("STOP","YOU'RE GOING TOO FAR DOWN!!");
-                elbow.setPower(0);
-            }//hi
-        // CLAW CONTROL
+            while ((gamepad2.dpad_down)){ //robot.magStopBottom.getValue() == 0.0 //
+                elbow.setPower(-0.5);//should lower arm down; this is just filler code, we can figure out actual numbers later
+                if ((limit.isPressed())){
+                    telemetry.addData("GO","YOU'RE GOING FAR DOWN!!");
+                    telemetry.addData("Touch Sensor Pressed", limit.getValue());
+                    elbow.setPower(0);
+                }
+            }
+            //hi
+
+
+        // CLAW CONTROLwqqqqq
             if (gamepad2.a){//open ; this is just filler code, we can figure out actual numbers later -- closing in
                 Claw.setPosition(.75);
                 telemetry.addData("claw should open", flPower);
@@ -232,7 +238,7 @@ public class TELEOPslay extends LinearOpMode {
                 telemetry.addData("claw rotate", flPower);
             }
             if(gamepad2.x){//rotate claw back to original position
-                clawRotate.setPosition(0);
+                clawRotate.setPosition(0.15);
                 telemetry.addData("claw rotate back", flPower);
             }
         }
