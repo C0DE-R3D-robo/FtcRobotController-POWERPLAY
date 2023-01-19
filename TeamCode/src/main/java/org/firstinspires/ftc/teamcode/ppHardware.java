@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -21,6 +22,7 @@ public class ppHardware {
     public Servo Claw = null;
     public Servo clawRotate = null;
     public DistanceSensor sensorRange = null;
+    public RevColorSensorV3 limit = null;
     //public DcMotor  pulleyMotor0 = null, pulleyMotor1=null, carousel = null;
     //public CRServo extenderServo = null;
 //    public Servo clawServo = null, chuteServo = null;
@@ -50,6 +52,7 @@ public class ppHardware {
         Claw = hwMap.get(Servo.class,"Claw");
         clawRotate = hwMap.get(Servo.class,"clawRotate");
         sensorRange = hwMap.get(DistanceSensor.class, "sensorRange");
+        limit = hwMap.get(RevColorSensorV3.class, "limit");
 
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");
