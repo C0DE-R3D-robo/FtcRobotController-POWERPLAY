@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 // Hardware class for the Greenhill 3 testbot
 // This hardware is for INFERNO REBORN, the robot we were working on as of January 8, 2022.
@@ -22,7 +23,7 @@ public class ppHardware {
     public Servo Claw = null;
     public Servo clawRotate = null;
     public DistanceSensor sensorRange = null;
-    public RevColorSensorV3 limit = null;
+    public TouchSensor limit = null;
     //public DcMotor  pulleyMotor0 = null, pulleyMotor1=null, carousel = null;
     //public CRServo extenderServo = null;
 //    public Servo clawServo = null, chuteServo = null;
@@ -46,13 +47,13 @@ public class ppHardware {
         frontRight = hwMap.get(DcMotor.class, "frontRight");
         backLeft   = hwMap.get(DcMotor.class, "backLeft");
         backRight  = hwMap.get(DcMotor.class, "backRight");
-        colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
+//        colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
         neck = hwMap.get(DcMotor.class,"neck");
         elbow = hwMap.get(DcMotor.class,"elbow");
         Claw = hwMap.get(Servo.class,"Claw");
         clawRotate = hwMap.get(Servo.class,"clawRotate");
         sensorRange = hwMap.get(DistanceSensor.class, "sensorRange");
-        limit = hwMap.get(RevColorSensorV3.class, "limit");
+        limit = hwMap.get(TouchSensor.class, "limit");
 
         //rotateLeft = hwMap.get(DcMotor.class, "rotateLeft");
         //rotateRight = hwMap.get(DcMotor.class, "rotateRight");

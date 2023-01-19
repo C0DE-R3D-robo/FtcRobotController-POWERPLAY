@@ -27,10 +27,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.ppDriving;
 
@@ -77,6 +79,7 @@ public class TELEOPslay extends LinearOpMode {
     public DcMotor elbow = null;
     private Servo Claw = null;
     private Servo clawRotate = null;
+    public TouchSensor limit = null;
 
     @Override
     public void runOpMode() {
@@ -91,6 +94,7 @@ public class TELEOPslay extends LinearOpMode {
         elbow = hardwareMap.get(DcMotor.class,"elbow");
         Claw = hardwareMap.get(Servo.class,"Claw");
         clawRotate = hardwareMap.get(Servo.class,"clawRotate");
+        limit = hardwareMap.get(TouchSensor.class, "limit");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -159,7 +163,6 @@ public class TELEOPslay extends LinearOpMode {
 //            frPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
 //            brPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
 
-
             // Send calculated power to wheels
             flDrive.setPower(0.4*flPower);
             frDrive.setPower(0.4*frPower);
@@ -208,12 +211,13 @@ public class TELEOPslay extends LinearOpMode {
             }else{
                 elbow.setPower(0);
             }
-            if (gamepad2.dpad_down){
+            if ((gamepad2.dpad_down) && (!limit.isPressed())){
+                telemetry.addData("GO","YOU'RE GOING FAR DOWN!!");
                 elbow.setPower(-.5);//should lower arm down; this is just filler code, we can figure out actual numbers later
             }else{
+                telemetry.addData("STOP","YOU'RE GOING TOO FAR DOWN!!");
                 elbow.setPower(0);
             }//hi
-
         // CLAW CONTROL
             if (gamepad2.a){//open ; this is just filler code, we can figure out actual numbers later -- closing in
                 Claw.setPosition(.75);
