@@ -534,24 +534,23 @@ public abstract class ppDriving extends LinearOpMode{
         robot.elbow.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //set drive power for forward
         robot.elbow.setPower(power);//lift up with arm still extended
-
         while (robot.elbow.isBusy()) {
-
+            telemetry.clear();
+            telemetry.addData("LIFT","CURRENTLY LIFTING THE ARM");
+            telemetry.update();
         }
 //        robot.elbow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);//
-
-        robot.neck.setTargetPosition(-1000);
-        //set run to position
-        robot.neck.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.elbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.neck.setTargetPosition(-1000);
+//        //set run to position
+//        robot.neck.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.clawRotate.setPosition(0);//flip claw
         //set drive power for forward
-        robot.neck.setPower(power);//lower claw
-        while (robot.neck.isBusy()) {
+        while (robot.neck.isBusy() || robot.elbow.isBusy()) {
 
         }
 //        robot.neck.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.Claw.setPosition(.75);//open/drop cone
+//        robot.Claw.setPosition(.75);//open/drop cone
         sleep(3000);
         robot.clawRotate.setPosition(1);//flip claw back
         robot.Claw.setPosition(.1);//close

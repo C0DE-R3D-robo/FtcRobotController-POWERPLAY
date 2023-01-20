@@ -31,10 +31,12 @@ import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.ppDriving;
+import org.firstinspires.ftc.teamcode.ppHardware;
 
 
 /**
@@ -67,34 +69,26 @@ import org.firstinspires.ftc.teamcode.ppDriving;
 
 @TeleOp(name="Tele-Slay", group="Linear Opmode")
 //@Disabled
-public class TELEOPslay extends LinearOpMode {
+public class TELEOPslay extends ppDriving {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor flDrive = null;
-    private DcMotor blDrive = null;
-    private DcMotor frDrive = null;
-    private DcMotor brDrive = null;
-    public DcMotor neck = null;//motor that is connected directly to the chassis
-    public DcMotor elbow = null;
-    private Servo Claw = null;
-    private Servo clawRotate = null;
-    public TouchSensor limit = null;
+    ppHardware robot;
 
     @Override
     public void runOpMode() {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        flDrive = hardwareMap.get(DcMotor.class, "frontLeft");
-        blDrive = hardwareMap.get(DcMotor.class, "backLeft");
-        frDrive = hardwareMap.get(DcMotor.class, "frontRight");
-        brDrive = hardwareMap.get(DcMotor.class, "backRight");
-        neck = hardwareMap.get(DcMotor.class,"neck");
-        elbow = hardwareMap.get(DcMotor.class,"elbow");
-        Claw = hardwareMap.get(Servo.class,"Claw");
-        clawRotate = hardwareMap.get(Servo.class,"clawRotate");
-        limit = hardwareMap.get(TouchSensor.class, "limit");
+        robot.frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
+        robot.backLeft = hardwareMap.get(DcMotor.class, "backLeft");
+        robot.frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+        robot.backRight = hardwareMap.get(DcMotor.class, "backRight");
+        robot.neck = hardwareMap.get(DcMotor.class, "neck");
+        robot.elbow = hardwareMap.get(DcMotor.class, "elbow");
+        robot.Claw = hardwareMap.get(Servo.class, "Claw");
+        robot.clawRotate = hardwareMap.get(Servo.class, "clawRotate");
+        robot.limit = hardwareMap.get(TouchSensor.class, "limit");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -106,12 +100,12 @@ public class TELEOPslay extends LinearOpMode {
         // when you first test your robot, push the left joystick forward and observe the direction the wheels turn.
         // Reverse the direction (flip FORWARD <-> REVERSE ) of any wheel that runs backward
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
-        flDrive.setDirection(DcMotor.Direction.REVERSE);
-        blDrive.setDirection(DcMotor.Direction.FORWARD);
-        frDrive.setDirection(DcMotor.Direction.FORWARD);
-        brDrive.setDirection(DcMotor.Direction.FORWARD);
-        neck.setDirection(DcMotor.Direction.FORWARD);
-        elbow.setDirection(DcMotor.Direction.REVERSE);
+        robot.frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        robot.backLeft.setDirection(DcMotor.Direction.FORWARD);
+        robot.frontRight.setDirection(DcMotor.Direction.FORWARD);
+        robot.backRight.setDirection(DcMotor.Direction.FORWARD);
+        robot.neck.setDirection(DcMotor.Direction.FORWARD);
+        robot.elbow.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
@@ -125,16 +119,16 @@ public class TELEOPslay extends LinearOpMode {
             double max;
 
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-            double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-            double lateral =  gamepad1.left_stick_x;
-            double yaw     =  gamepad1.right_stick_x;
+            double axial = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
+            double lateral = gamepad1.left_stick_x;
+            double yaw = gamepad1.right_stick_x;
 
             // Combine the joystick requests for each axis-motion to determine each wheel's power.
             // Set up a variable for each drive wheel to save the power level for telemetry.
-            double flPower  = axial + lateral + yaw;
+            double flPower = axial + lateral + yaw;
             double frPower = axial - lateral - yaw;
-            double blPower   = axial - lateral + yaw;
-            double brPower  = axial + lateral - yaw;
+            double blPower = axial - lateral + yaw;
+            double brPower = axial + lateral - yaw;
 
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
@@ -142,10 +136,10 @@ public class TELEOPslay extends LinearOpMode {
             max = Math.max(max, Math.abs(blPower));
             max = Math.max(max, Math.abs(brPower));
 
-            flPower  /= max;
+            flPower /= max;
             frPower /= max;
-            blPower   /= max;
-            brPower  /= max;//hello
+            blPower /= max;
+            brPower /= max;//hello
 
             // This is test code:
             //
@@ -164,24 +158,24 @@ public class TELEOPslay extends LinearOpMode {
 //            brPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
 
             // Send calculated power to wheels
-            flDrive.setPower(0.4*flPower);
-            frDrive.setPower(0.4*frPower);
-            blDrive.setPower(0.4*blPower);
-            brDrive.setPower(0.4*brPower);
+            robot.frontLeft.setPower(0.4 * flPower);
+            robot.frontRight.setPower(0.4 * frPower);
+            robot.backLeft.setPower(0.4 * blPower);
+            robot.backRight.setPower(0.4 * brPower);
 
-            if (gamepad1.left_bumper){ //hold down left bumper for slow mode
-                flDrive.setPower(0.25*flPower);
-                frDrive.setPower(0.25*frPower);
-                blDrive.setPower(0.25*blPower);
-                brDrive.setPower(0.25*brPower);
-                telemetry.addData("Touch Sensor Pressed", limit.getValue());
+            if (gamepad1.left_bumper) { //hold down left bumper for slow mode
+                robot.frontLeft.setPower(0.25 * flPower);
+                robot.frontRight.setPower(0.25 * frPower);
+                robot.backLeft.setPower(0.25 * blPower);
+                robot.backRight.setPower(0.25 * brPower);
+                telemetry.addData("Touch Sensor Pressed", robot.limit.getValue());
             }
-            if (gamepad1.right_bumper){ //hold down left bumper for slow mode
-                flDrive.setPower(0.7*flPower);
-                frDrive.setPower(0.7*frPower);
-                blDrive.setPower(0.7*blPower);
-                brDrive.setPower(0.7*brPower);
-                telemetry.addData("Touch Sensor Pressed", limit.getValue());
+            if (gamepad1.right_bumper) { //hold down left bumper for slow mode
+                robot.frontLeft.setPower(0.7 * flPower);
+                robot.frontRight.setPower(0.7 * frPower);
+                robot.backLeft.setPower(0.7 * blPower);
+                robot.backRight.setPower(0.7 * brPower);
+                telemetry.addData("Touch Sensor Pressed", robot.limit.getValue());
             }
 
 
@@ -190,59 +184,61 @@ public class TELEOPslay extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", flPower, frPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", blPower, brPower);
 
-            telemetry.addData("Front left/Right", "%4.2f, %4.2f", flPower *.025, frPower *.025);
-            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", blPower *.025, brPower *.025);
+            telemetry.addData("Front left/Right", "%4.2f, %4.2f", flPower * .025, frPower * .025);
+            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", blPower * .025, brPower * .025);
             telemetry.update();
 
             //2nd driver controls only the arm and claw
-        // CHASSIS-BOUND HINGE CONTROL
-            if (gamepad2.dpad_right){
-                neck.setPower(1);// should hinge arm forward; this is just filler code, we can figure out actual numbers later
-            }else{
-                neck.setPower(0);
+            // CHASSIS-BOUND HINGE CONTROL
+            if (gamepad2.dpad_right) {
+                robot.neck.setPower(1);// should hinge arm forward; this is just filler code, we can figure out actual numbers later
+            } else {
+                robot.neck.setPower(0);
             }
-            if(gamepad2.dpad_left){
-                neck.setPower(-1);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
-            }else{
-                neck.setPower(0);
+            if (gamepad2.dpad_left) {
+                robot.neck.setPower(-1);//should hinge arm backward ; this is just filler code, we can figure out actual numbers later
+            } else {
+                robot.neck.setPower(0);
             }
-            telemetry.addData("Touch Sensor Pressed", limit.getValue());
-        // ELBOW CONTROL
-            if(gamepad2.dpad_up){
-                elbow.setPower(0.5);//should lift arm upwards ; this is just filler code, we can figure out actual numbers later
-            }else{
-                elbow.setPower(0);
+            telemetry.addData("Touch Sensor Pressed", robot.limit.getValue());
+            // ELBOW CONTROL
+            if (gamepad2.dpad_up) {
+                robot.elbow.setPower(0.5);//should lift arm upwards ; this is just filler code, we can figure out actual numbers later
+            } else {
+                robot.elbow.setPower(0);
             }
-            while ((gamepad2.dpad_down)){ //robot.magStopBottom.getValue() == 0.0 //
+            while ((gamepad2.dpad_down)) { //robot.magStopBottom.getValue() == 0.0 //
                 //elbow.setPower(-0.5);//should lower arm down; this is just filler code, we can figure out actual numbers later
-                if ((limit.isPressed())){
-                    telemetry.addData("GO","YOU'RE GOING FAR DOWN!!");
-                    telemetry.addData("Touch Sensor Pressed", limit.getValue());
-                    elbow.setPower(0);
-                }
-                else{
-                    elbow.setPower(-0.5);
+                if ((robot.limit.isPressed())) {
+                    telemetry.addData("GO", "YOU'RE GOING FAR DOWN!!");
+                    telemetry.addData("Touch Sensor Pressed", robot.limit.getValue());
+                    robot.elbow.setPower(0);
+                } else {
+                    robot.elbow.setPower(-0.5);
                 }
             }
             //hi
 
 
-        // CLAW CONTROLwqqqqq
-            if (gamepad2.a){//open ; this is just filler code, we can figure out actual numbers later -- closing in
-                Claw.setPosition(.75);
+            // CLAW CONTROLwqqqqq
+            if (gamepad2.a) {//open ; this is just filler code, we can figure out actual numbers later -- closing in
+                robot.Claw.setPosition(.75);
                 telemetry.addData("claw should open", flPower);
             }
-            if(gamepad2.y){//close ; this is just filler code, we can figure out actual numbers later -- going back
-                Claw.setPosition(.13);
+            if (gamepad2.y) {//close ; this is just filler code, we can figure out actual numbers later -- going back
+                robot.Claw.setPosition(.13);
                 telemetry.addData("claw should close", flPower);
             }
-            if(gamepad2.b){//rotate claw ~180 degrees; this is just filler code, we can figure out actual numbers later
-                clawRotate.setPosition(1);
+            if (gamepad2.b) {//rotate claw ~180 degrees; this is just filler code, we can figure out actual numbers later
+                robot.clawRotate.setPosition(1);
                 telemetry.addData("claw rotate", flPower);
             }
-            if(gamepad2.x){//rotate claw back to original position
-                clawRotate.setPosition(0.15);
+            if (gamepad2.x) {//rotate claw back to original position
+                robot.clawRotate.setPosition(0.15);
                 telemetry.addData("claw rotate back", flPower);
+            }
+            if (gamepad2.left_bumper) {
+                armheight(.5);
             }
         }
         telemetry.update();
