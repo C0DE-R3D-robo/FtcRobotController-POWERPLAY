@@ -74,6 +74,9 @@ public class TELEOPslay extends ppDriving {
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
     ppHardware robot;
+    public void setRobot(ppHardware robot){
+        this.robot = robot;
+    }
 
     @Override
     public void runOpMode() {
