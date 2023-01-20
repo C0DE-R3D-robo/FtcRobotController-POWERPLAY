@@ -209,16 +209,19 @@ public class TELEOPslay extends LinearOpMode {
             telemetry.addData("Touch Sensor Pressed", limit.getValue());
         // ELBOW CONTROL
             if(gamepad2.dpad_up){
-                elbow.setPower(0.8);//should lift arm upwards ; this is just filler code, we can figure out actual numbers later
+                elbow.setPower(0.5);//should lift arm upwards ; this is just filler code, we can figure out actual numbers later
             }else{
                 elbow.setPower(0);
             }
             while ((gamepad2.dpad_down)){ //robot.magStopBottom.getValue() == 0.0 //
-                elbow.setPower(-0.5);//should lower arm down; this is just filler code, we can figure out actual numbers later
+                //elbow.setPower(-0.5);//should lower arm down; this is just filler code, we can figure out actual numbers later
                 if ((limit.isPressed())){
                     telemetry.addData("GO","YOU'RE GOING FAR DOWN!!");
                     telemetry.addData("Touch Sensor Pressed", limit.getValue());
                     elbow.setPower(0);
+                }
+                else{
+                    elbow.setPower(-0.5);
                 }
             }
             //hi
