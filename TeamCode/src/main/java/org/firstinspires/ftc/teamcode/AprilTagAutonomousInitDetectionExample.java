@@ -57,7 +57,7 @@ public class AprilTagAutonomousInitDetectionExample extends ppDriving
     int MIDDLE = 2;
     int RIGHT = 3;
 
-    AprilTagDetection tagOfInterest = null;
+    AprilTagDetection tagOfInterest;
 
     @Override
     public void runOpMode(){
@@ -170,17 +170,19 @@ public class AprilTagAutonomousInitDetectionExample extends ppDriving
         if(tagOfInterest.id == RIGHT){
             //default trajectory here if preferred
             telemetry.addLine("zone 3 found, moving right");
-            move(.2,'r',9.5);
-            move(.2,'f',11);
+            move(.06,'r',10);
+            move(.06,'f',11.5);
         }else if(tagOfInterest.id == LEFT){
             telemetry.addLine("zone 1 found, moving left");
 
-            move(.5,'l',14);
-            move(.5,'f',8);
+            move(.06,'l',16);
+            move(.06,'f',9);
+//            rotate(.06,'l',15);
             //left trajectory
         }else if(tagOfInterest.id == MIDDLE){
             //middle trajectory
             telemetry.addLine("zone 2 found, moving forward");
+            move(.01,'f',10);
 //            move(.01,'l',1);
 //            move(.005,'f',7);
             //rotate(.1,'l',35);
